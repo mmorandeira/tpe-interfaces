@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="./main.css">
 </head>
     <body>
-        <!-- Uso directo del componente -->
+        <!--with auto-start we call the method of the component attributeChangedCallback-->
+        <rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>
+        
         <my-navbar></my-navbar>
 
         <div style="padding: 50px; color: white; background: #222;">
@@ -14,7 +16,8 @@
             <p>Este es un ejemplo con Web Components.</p>
         </div>
 
-        <!-- Importamos el componente -->
+        <!-- Component imports -->
         <script src="./components/navbar/navbar.js"></script>
+        <script src="./components/loading/loading.js"></script>
     </body>
 </html>

@@ -57,8 +57,9 @@ class RushLoadingScreen extends HTMLElement {
         this.updateProgress(0);
     }
 
-    // Public API Methods
     startLoading(duration = 5000) {
+        /* Start the loading process over the specified duration (in ms) */
+
         if (this.isLoading) return;
         
         this.isLoading = true;
@@ -79,7 +80,7 @@ class RushLoadingScreen extends HTMLElement {
                 this.completeLoading();
             } else {
                 this.updateProgress(this.progress);
-                this.updateMessage();
+                this.updateMessage(this.progress);
             }
             
         }, 100);
@@ -92,6 +93,8 @@ class RushLoadingScreen extends HTMLElement {
     }
 
     stopLoading() {
+        /* Immediately stop loading and fade out */
+
         if (!this.isLoading) return;
         
         this.isLoading = false;
@@ -105,6 +108,8 @@ class RushLoadingScreen extends HTMLElement {
     }
 
     completeLoading() {
+        /* Complete the loading process and fade out */
+
         this.isLoading = false;
         
         if (this.loadingInterval) {
@@ -123,6 +128,8 @@ class RushLoadingScreen extends HTMLElement {
     }
 
     fadeOut() {
+        /* Fade out the loading overlay */
+
         this.loadingOverlay.classList.add('fade-out');
         
         // Emit loading completed event
@@ -134,6 +141,8 @@ class RushLoadingScreen extends HTMLElement {
     }
 
     updateProgress(percentage) {
+        /* Update the progress bar and percentage text */
+
         const clampedPercentage = Math.min(100, Math.max(0, percentage));
         
         if (this.progressFill) {
@@ -145,13 +154,15 @@ class RushLoadingScreen extends HTMLElement {
         }
     }
 
-    updateMessage() {
+    updateMessage(progress) {
+        /* Update the loading message based on current progress */
+
         if (!this.progressText) return;
         
         // Change message based on progress
         const progressThresholds = [0, 20, 40, 60, 75, 90];
         const currentThreshold = progressThresholds.findIndex(threshold => 
-            this.progress < threshold || threshold === 90
+            progress < threshold || threshold === 90
         );
         
         if (currentThreshold !== -1 && currentThreshold !== this.currentMessageIndex) {
@@ -165,48 +176,6 @@ class RushLoadingScreen extends HTMLElement {
                 this.progressText.classList.remove('change-message');
             }, 250);
         }
-    }
-
-    // Manual progress setting
-    setProgress(percentage) {
-        if (!this.isLoading) return;
-        
-        this.progress = Math.min(100, Math.max(0, percentage));
-        this.updateProgress(this.progress);
-        this.updateMessage();
-        
-        if (this.progress >= 100) {
-            this.completeLoading();
-        }
-    }
-
-    // Get current progress
-    getProgress() {
-        return this.progress;
-    }
-
-    // Check if currently loading
-    isCurrentlyLoading() {
-        return this.isLoading;
-    }
-
-    // Set custom loading messages
-    setMessages(messages) {
-        if (Array.isArray(messages) && messages.length > 0) {
-            this.messages = [...messages];
-            this.currentMessageIndex = 0;
-        }
-    }
-
-    // Show/hide loading screen manually
-    show() {
-        if (this.loadingOverlay) {
-            this.loadingOverlay.classList.remove('fade-out');
-        }
-    }
-
-    hide() {
-        this.fadeOut();
     }
 
     // Cleanup method
