@@ -110,23 +110,33 @@
 }
 
 .mobile-menu {
-    display: none;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
-    right: 0;
-    background-color: #1a1a1a;
+    width: 100%;
+    max-width: 522px;
+    background: linear-gradient(to bottom, var(--neutral-black) 23%, var(--neutral-surface-variant) 77%);
     border-top: 1px solid #333;
     z-index: 1000;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
 }
 
 .mobile-menu.active {
-    display: block;
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 .nav-links {
     list-style: none;
     padding: 20px;
+    margin: 0;
 }
 
 .nav-links li {
@@ -137,17 +147,156 @@
     margin-bottom: 0;
 }
 
-.nav-links li a {
+.nav-item {
     text-decoration: none;
     color: white;
     font-size: 16px;
+    font-weight: 500;
     transition: color 0.3s;
-    display: block;
-    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
 }
 
-.nav-links li a:hover {
-    color: #7ED321;
+.nav-item:hover {
+    color: var(--rushgames-primary);
+}
+
+.nav-icon {
+    margin-right: 12px;
+    font-size: 18px;
+    width: 24px;
+    display: inline-block;
+}
+
+.categories-section {
+    margin-top: 20px;
+}
+
+.categories-title {
+    color: var(--rushgames-primary);
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+    
+}
+
+.categories-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.categories-list li {
+    margin-bottom: 12px;
+}
+
+.category-item {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    padding-left: 36px;
+}
+
+.category-item:hover {
+    color: var(--rushgames-primary);
+}
+
+.category-icon {
+    margin-right: 12px;
+    font-size: 16px;
+    width: 20px;
+    display: inline-block;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.menu-footer {
+    border-top: 1px solid var(--rushgames-primary);
+    padding: 20px;
+}
+
+.social-icon {
+    color: var(--rushgames-primary);
+    transition: all 0.3s;
+    padding: 8px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+}
+
+.social-icon:hover {
+    transform: scale(1.15);
+    color: #6BC91A;
+}
+
+.social-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.mobile-login-button {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.login-icon-container {
+    background: var(--rushgames-primary);
+    padding: 12px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    width: 80px;
+    height: 50px;
+}
+
+.mobile-login-button:hover .login-icon-container {
+    background-color: #6BC91A;
+    transform: scale(1.1);
+}
+
+.login-icon {
+    fill: var(--neutral-black);
+    stroke: var(--neutral-black);
+    transition: all 0.3s ease;
+}
+
+.mobile-login-button:hover .login-icon {
+    transform: translateX(2px);
+}
+
+.login-text {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.mobile-login-button:hover .login-text {
+    color: var(--rushgames-primary);
 }
 
 /* Responsive Design */

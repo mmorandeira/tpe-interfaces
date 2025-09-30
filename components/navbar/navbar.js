@@ -24,11 +24,11 @@ class MyNavbar extends HTMLElement {
         const mobileMenu = this.shadowRoot.querySelector('#mobile-menu');
         const searchInput = this.shadowRoot.querySelector('.search-input');
         const searchButton = this.shadowRoot.querySelector('.search-button');
+        const mobileLoginButton = this.shadowRoot.querySelector('.mobile-login-button');
 
         // Toggle mobile menu
         hamburger?.addEventListener('click', () => {
             mobileMenu?.classList.toggle('active');
-            this.toggleHamburgerAnimation(hamburger);
         });
 
         // Search functionality
@@ -42,38 +42,46 @@ class MyNavbar extends HTMLElement {
             }
         });
 
+        // Mobile login button
+        mobileLoginButton?.addEventListener('click', () => {
+            this.handleLogin();
+        });
+
+        // Category navigation
+        const categoryItems = this.shadowRoot.querySelectorAll('.category-item');
+        categoryItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = e.target.textContent.trim();
+                this.handleCategoryNavigation(category);
+            });
+        });
+
+        // Main navigation items
+        const navItems = this.shadowRoot.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = e.target.textContent.trim();
+                this.handleNavigation(page);
+            });
+        });
+
+        // Social media links
+        const socialIcons = this.shadowRoot.querySelectorAll('.social-icon');
+        socialIcons.forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.handleSocialNavigation(e.currentTarget);
+            });
+        });
+
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!this.contains(e.target)) {
                 mobileMenu?.classList.remove('active');
-                this.resetHamburgerAnimation(hamburger);
             }
         });
-    }
-
-    toggleHamburgerAnimation(hamburger) {
-        const spans = hamburger.querySelectorAll('span');
-        if (hamburger.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            spans[0].style.transform = 'rotate(0deg) translateY(0px)';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'rotate(0deg) translateY(0px)';
-        } else {
-            hamburger.classList.add('active');
-            spans[0].style.transform = 'rotate(45deg) translateY(6px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translateY(-6px)';
-        }
-    }
-
-    resetHamburgerAnimation(hamburger) {
-        if (hamburger) {
-            hamburger.classList.remove('active');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'rotate(0deg) translateY(0px)';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'rotate(0deg) translateY(0px)';
-        }
     }
 
     handleSearch(query) {
@@ -83,6 +91,59 @@ class MyNavbar extends HTMLElement {
             // Por ejemplo, emitir un evento personalizado
             this.dispatchEvent(new CustomEvent('search', {
                 detail: { query: query.trim() },
+                bubbles: true
+            }));
+        }
+    }
+
+    handleLogin() {
+        console.log('Login button clicked');
+        // Emit custom event for login
+        this.dispatchEvent(new CustomEvent('login', {
+            bubbles: true
+        }));
+    }
+
+    handleNavigation(page) {
+        console.log('Navigating to:', page);
+        // Emit custom event for navigation
+        this.dispatchEvent(new CustomEvent('navigate', {
+            detail: { page: page },
+            bubbles: true
+        }));
+    }
+
+    handleCategoryNavigation(category) {
+        console.log('Navigating to category:', category);
+        // Emit custom event for category navigation
+        this.dispatchEvent(new CustomEvent('categoryNavigate', {
+            detail: { category: category },
+            bubbles: true
+        }));
+    }
+
+    handleSocialNavigation(socialIcon) {
+        const socialType = socialIcon.classList[1]; // Gets 'instagram', 'facebook', etc.
+        console.log('Social media clicked:', socialType);
+        
+        // Define social media URLs
+        const socialUrls = {
+            instagram: 'https://instagram.com',
+            facebook: 'https://facebook.com',
+            youtube: 'https://youtube.com',
+            twitter: 'https://twitter.com'
+        };
+
+        if (socialUrls[socialType]) {
+            // In a real application, you might want to open in a new tab
+            // window.open(socialUrls[socialType], '_blank');
+            
+            // Emit custom event for social navigation
+            this.dispatchEvent(new CustomEvent('socialNavigate', {
+                detail: { 
+                    platform: socialType,
+                    url: socialUrls[socialType]
+                },
                 bubbles: true
             }));
         }
