@@ -1,9 +1,23 @@
 .game-header {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  padding: 0;
 
   margin-bottom: 0.2rem;
+}
+
+.title-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 110px;
+  height: 1px;
+  background-color: var(--text-primary);
+  transform: translateY(-50%);
+  z-index: 1;
 }
 * {
   margin: 0;
@@ -50,6 +64,7 @@
   margin: 0 auto 16px auto;
   overflow: hidden;
   background: var(--neutral-surface);
+  border-radius: 16px;
 }
 
 .game-image {
@@ -57,6 +72,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+  border-radius: 16px;
 }
 
 .game-card:hover .game-image {
@@ -117,7 +133,7 @@
 /* Game Info */
 .game-info {
   flex: 1;
-  padding: 0.25rem 0.75rem 0.75rem 0.75rem;
+  padding: 0.25rem 0 0.75rem 0;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -161,14 +177,18 @@
 }
 
 .star.half-filled {
-  background: linear-gradient(
-    90deg,
-    var(--rushgames-primary) 50%,
-    var(--neutral-border) 50%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  position: relative;
+  color: var(--neutral-border);
+}
+
+.star.half-filled::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: var(--rushgames-primary);
 }
 
 /* Game Category */
