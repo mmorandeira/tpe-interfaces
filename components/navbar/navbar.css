@@ -43,7 +43,7 @@
 }
 
 .hamburger-menu:hover span {
-    background-color: #6BC91A;
+    background-color: var(--rushgames-primary-l1);
 }
 
 .logo {
@@ -74,7 +74,7 @@
 .search-input {
     background: none;
     border: none;
-    color: #fff;
+    color: var(--text-primary);
     outline: none;
     flex: 1;
     font-size: 16px;
@@ -97,7 +97,7 @@
 }
 
 .search-button:hover {
-    color: #7ED321;
+    color: var(--rushgames-accent);
 }
 
 .login-button {
@@ -107,6 +107,156 @@
     padding: 6px 12px; 
     cursor: pointer;
     font-size: 20px;
+}
+
+/* Logged in navbar styles */
+.navbar-right-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Coins section */
+.coins-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    padding: 6px 12px;
+}
+
+.coin-circle {
+    width: 20px;
+    height: 20px;
+    background: var(--rushgames-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--neutral-black);
+    font-size: 14px;
+}
+
+.coin-amount {
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 16px;
+    min-width: 40px;
+}
+
+.add-coins-btn {
+    background: var(--rushgames-primary);
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: var(--neutral-black);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.add-coins-btn:hover {
+    background: var(--rushgames-primary);
+    transform: scale(1.1);
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 20px;;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--rushgames-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    background: var(--neutral-surface-variant);
+    color: var(--rushgames-primary);
+    transform: scale(1.1);
+}
+
+.action-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Profile section */
+.profile-section {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--rushgames-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    border-color: var(--rushgames-primary-l1);
+    transform: scale(1.05);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Level section */
+.level-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 50px;
+}
+
+.level-number {
+    color: var(--rushgames-primary);
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 0 0 10px var(--rushgames-primary-d1);
+}
+
+.experience-bar {
+    width: 50px;
+    height: 4px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.experience-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rushgames-accent), var(--rushgames-primary));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px var(--rushgames-accent-d1);
 }
 
 .mobile-menu {
@@ -150,12 +300,11 @@
 .nav-item {
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     transition: color 0.3s;
     display: flex;
     align-items: center;
-    padding: 8px 0;
 }
 
 .nav-item:hover {
@@ -175,7 +324,7 @@
 
 .categories-title {
     color: var(--rushgames-primary);
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     display: block;
     margin-bottom: 15px;
@@ -195,7 +344,7 @@
 .category-item {
     text-decoration: none;
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 20px;
     transition: color 0.3s;
     display: flex;
     align-items: center;
@@ -240,7 +389,7 @@
 
 .social-icon:hover {
     transform: scale(1.15);
-    color: #6BC91A;
+    color: var(--rushgames-primary-l1);
 }
 
 .social-icon svg {
@@ -248,7 +397,7 @@
     height: 40px;
 }
 
-.mobile-login-button {
+.mobile-login-button, .mobile-logout-button {
     background: none;
     border: none;
     padding: 15px 20px;
@@ -261,7 +410,7 @@
     transition: all 0.3s ease;
 }
 
-.login-icon-container {
+.login-icon-container, .logout-icon-container {
     background: var(--rushgames-primary);
     padding: 12px;
     border-radius: 25px;
@@ -273,31 +422,32 @@
     height: 50px;
 }
 
-.mobile-login-button:hover .login-icon-container {
-    background-color: #6BC91A;
+.mobile-login-button:hover .login-icon-container, .mobile-logout-button:hover .logout-icon-container {
+    background-color: var(--rushgames-primary-l1);
     transform: scale(1.1);
 }
 
-.login-icon {
+.login-icon, .logout-icon {
     fill: var(--neutral-black);
     stroke: var(--neutral-black);
     transition: all 0.3s ease;
 }
 
-.mobile-login-button:hover .login-icon {
+.mobile-login-button:hover .login-icon, .mobile-logout-button:hover .logout-icon {
     transform: translateX(2px);
 }
 
-.login-text {
+.login-text, .logout-text {
     color: var(--text-primary);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-.mobile-login-button:hover .login-text {
+.mobile-login-button:hover .login-text, .mobile-logout-button:hover .logout-text {
     color: var(--rushgames-primary);
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -321,6 +471,50 @@
         font-size: 12px;
         padding: 6px 12px;
     }
+    
+    /* Responsive for logged in elements */
+    .navbar-right-logged-in {
+        gap: 12px;
+    }
+    
+    .coins-section {
+        padding: 4px 8px;
+    }
+    
+    .coin-amount {
+        font-size: 14px;
+        min-width: 35px;
+    }
+    
+    .action-buttons {
+        gap: 8px;
+        padding-left: 12px;
+    }
+    
+    .action-btn {
+        padding: 6px;
+    }
+    
+    .profile-section {
+        padding-left: 12px;
+    }
+    
+    .profile-image {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .level-section {
+        min-width: 40px;
+    }
+    
+    .level-number {
+        font-size: 16px;
+    }
+    
+    .experience-bar {
+        width: 40px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -335,5 +529,55 @@
     .login-button {
         font-size: 11px;
         padding: 5px 10px;
+    }
+    
+    /* Very small screens - simplify logged in elements */
+    .navbar-right-logged-in {
+        gap: 8px;
+    }
+    
+    .coins-section {
+        padding: 3px 6px;
+    }
+    
+    .coin-amount {
+        font-size: 12px;
+        min-width: 30px;
+    }
+    
+    .action-buttons {
+        gap: 6px;
+        padding-left: 8px;
+    }
+    
+    .action-btn {
+        padding: 4px;
+    }
+    
+    .action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .profile-section {
+        padding-left: 8px;
+    }
+    
+    .profile-image {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .level-section {
+        min-width: 35px;
+    }
+    
+    .level-number {
+        font-size: 14px;
+    }
+    
+    .experience-bar {
+        width: 35px;
+        height: 3px;
     }
 }

@@ -1,25 +1,78 @@
 <template id="navbar-template">
     <nav class="navbar">
+        <!-- Left section -->
         <div class="navbar-left">
+            <!-- Hamburger menu section-->
             <button class="hamburger-menu" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
+            <!-- Logo section-->
             <div class="logo">RUSH<span>games</span></div>
+            <!-- Search section-->
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Busca tu juego favorito...">
                 <button class="search-button">
-                    <!--Ver otra solucion o preguntarle a pato si le tenemos que explicar esto en una defensa-->
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
             </div>
         </div>
-
-        <button class="login-button">Iniciar sesión</button>
-
+        <!-- Right section -->
+        <div class="navbar-right-logged-out">
+            <button class="login-button">Iniciar sesión</button>
+        </div>
+        <div class="navbar-right-logged-in">
+            <!-- Monedas section -->
+            <div class="coins-section">
+                <div class="coin-circle">
+                    <span>R</span>
+                </div>
+                <span class="coin-amount">1543</span>
+                <button class="add-coins-btn">+</button>
+            </div>
+            
+            <!-- Action buttons section -->
+            <div class="action-buttons">
+                <button class="action-btn community-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="action-btn notifications-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="action-btn favorites-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Profile section -->
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="" alt="Perfil">
+                </div>
+            </div>
+            
+            <!-- Level section -->
+            <div class="level-section">
+                <div class="level-number">13</div>
+                <div class="experience-bar">
+                    <div class="experience-fill" style="width: 65%;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
         <div class="mobile-menu" id="mobile-menu">
             <ul class="nav-links">
                 <li><a href="#" class="nav-item"><span class="nav-icon">🏠</span>Inicio</a></li>
@@ -75,14 +128,26 @@
                 <button class="mobile-login-button">
                     <div class="login-icon-container">
                         <svg class="login-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Puerta sin línea izquierda -->
-                            <path d="M3 4 L13 4 Q14 4 14 5 L14 19 Q14 20 13 20 L3 20" stroke="currentColor" stroke-width="2" fill="none"/>
-                            <circle cx="10" cy="12" r="0.5" fill="currentColor"/>
-                            <!-- Flecha entrando -->
-                            <path d="M15 12h6m-3-3l3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="15" y1="3" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="15" y1="21" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="21" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <polyline points="10,17 15,12 10,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <line x1="15" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <span class="login-text">Inicia Sesión</span>
+                    <span class="login-text">Iniciar Sesión</span>
+                </button>
+                <button class="mobile-logout-button">
+                    <div class="logout-icon-container">
+                        <svg class="logout-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="3" y1="3" x2="9" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="3" y1="21" x2="9" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="3" y1="3" x2="3" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <polyline points="16,17 21,12 16,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="logout-text">Cerrar Sesión</span>
                 </button>
             </div>
         </div>
