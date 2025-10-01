@@ -1,9 +1,5 @@
-/* components/comments/comment-section/comment-section.css */
-
-/* contenedor del web component */
 :host {
   display: block;
-  /* tokens locales inspirados en tu Figma */
   --panel: #121826;
   --border: #22304b;
   --text: #e9f0ff;
@@ -13,16 +9,15 @@
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* tarjeta principal */
 .section {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px;
   box-shadow: var(--shadow);
+  overflow: hidden; 
 }
 
-/* título “Comentarios” */
 .title {
   margin: 0 0 12px 0;
   color: var(--text);
@@ -30,16 +25,16 @@
   font-weight: 600;
 }
 
-/* lista de comentarios: SIN numeración */
+.count { margin-left: 6px; font-weight: 700; opacity: .9; }
+
 .list {
-  list-style: none;     /* <- quita el 1., 2., ... */
+  list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 16px;            /* separación entre comentarios */
+  gap: 16px;
 }
 
-/* espaciado con el composer si está presente */
 comment-composer {
   display: block;
   margin-bottom: 12px;
