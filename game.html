@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Web Component Navbar</title>
+     <link rel="stylesheet" href="./main.css">
 </head>
     <body>
         <!-- Uso directo del componente -->
@@ -12,8 +13,13 @@
             <h1>página del juego</h1>
             <p>Este es un ejemplo con Web Components.</p>
         </div>
+            <rush-breadcrumb id="gameBreadcrumb">   </rush-breadcrumb>
+            <div style="padding: 50px; color: white; background: #222;">
+                <h1>Contenido del juego</h1>
+                <p>Este es un ejemplo con Web Components.</p>
 
         <!-- Importamos el componente -->
         <script src="./components/navbar/navbar.js"></script>
+        <script src="./components/breadcrumb/breadcrumb.js"></script>
     </body>
 </html>
