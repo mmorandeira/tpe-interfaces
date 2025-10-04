@@ -90,23 +90,21 @@ class CommentItem extends HTMLElement {
       );
     });
 
-    this._actions.addEventListener('action:secondary', () => {
-      this._thread.toggle();
-      const isOpen = this._thread._open;
-      this._updateSecondaryLabel(isOpen);
-      this.dispatchEvent(
-        new CustomEvent(isOpen ? 'thread:open' : 'thread:close', { bubbles: true })
-      );
-    });
-
     this._updateSecondaryLabel(false);
     this._resolveReady?.();
   }
 
-  _updateSecondaryLabel(open) {
-    const hasReplies = (this._thread?.replies?.length || 0) > 0;
-    const label = open ? 'Ocultar respuestas' : hasReplies ? 'Ver respuestas' : 'Ver respuestas';
+  _updateSecondaryLabel(open = this._thread?._open ?? false) {
+    const n = this._thread?.replies?.length ?? 0;
+    const hasReplies = n > 0;
+    const label = open
+      ? 'Ocultar respuestas'
+      : hasReplies
+        ? `Ver respuestas (${n})`
+        : 'Ver respuestas';
     this._actions?.setAttribute('secondary-label', label);
+    // ocultá el botón si no hay replies y está cerrado
+    this._actions?.toggleAttribute('hide-secondary', !open && !hasReplies);
   }
 
   disconnectedCallback() {
