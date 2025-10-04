@@ -10,6 +10,9 @@
         <!--<rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>-->
         
         <my-navbar></my-navbar>
+
+        <!-- Breadcrumb justo debajo del navbar -->
+        <rush-breadcrumb id="gameBreadcrumb"></rush-breadcrumb>
         
         <div style="padding: 50px; color: white; background: #222;">
             <h1>Bienvenido a mi página</h1>
@@ -41,9 +44,15 @@
                         image="https://via.placeholder.com/243x369/FF9800/white?text=Puzzle+Master"
                         rating="3"
                         category="Puzzle">
-                    </rush-game-card>
+                    </rush-game-card>   
+
                 </div>
+                 <rush-category-carousel id="categoryCarousel"></rush-category-carousel>
+        
+        <!-- Game Carousel -->
+                 <rush-game-carousel id="recommendedCarousel"></rush-game-carousel>
             </div>
+            
         </div>
          <rush-auth-form default-tab="register"></rush-auth-form>
         <!-- Component imports -->
@@ -51,5 +60,19 @@
         <script src="./components/loading/loading.js"></script>
         <script src="./components/game-card/game_card.js"></script>
         <script src="./components/auth-form/auth-form.js"></script>
+        <script src="./components/category-carousel/category_carousel.js"></script>
+        <script src="./components/breadcrumb/breadcrumb.js"></script>
+        <script>
+            // Espera a que el componente esté en el DOM
+            setTimeout(() => {
+                const breadcrumb = document.getElementById('gameBreadcrumb');
+                breadcrumb.setItems([
+                    { label: 'Home', url: '/index.html' },
+                    { label: 'Juegos', url: '/juegos.html' },
+                    { label: 'Destacados', url: '#' }
+                ]);
+            }, 100);
+        </script>
+
     </body>
 </html>

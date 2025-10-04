@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.category-carousel-container {
+  
+  width: 100%;
+  padding: 40px 0;
+ 
+}
+
+.carousel-title {
+  justify-content: center;
+  display:flex;
+  font-size: 2rem;
+  font-weight: 300;
+  color:  rgba(255, 255, 255, 0.8);
+  margin: 0 0 20px 0;
+  padding: 0 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.categories-wrapper {
+  padding: 0 16px;
+}
+
+.categories-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 15px 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-container::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  flex-shrink: 0;
+  width: 136px;
+  height: 136px;
+  background: linear-gradient(135deg, #B7F34D 0%, #6F982F 100%);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(126, 211, 33, 0.3);
+}
+
+.category-card:hover::before {
+  opacity: 1;
+}
+
+.category-card:active {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.category-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.category-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+  .carousel-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-title {
+    font-size: 2rem;
+  }
+  .categories-container {
+    
+    justify-content: flex-start;
+  }
+
+  .category-card {
+    width: 120px;
+    height: 120px;
+  }
+
+  .category-icon {
+    font-size: 2.2rem;
+  }
+
+  .category-name {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .category-carousel-container {
+    padding: 30px 0;
+  }
+
+  .carousel-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .categories-container {
+    gap: 16px;
+    justify-content: flex-start;
+  }
+
+  .category-card {
+    width: 110px;
+    height: 110px;
+  }
+
+  .category-icon {
+    font-size: 2rem;
+  }
+
+  .category-name {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-carousel-container {
+    padding: 20px 0;
+  }
+
+  .carousel-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .categories-wrapper {
+    padding: 0 12px;
+  }
+
+  .categories-container {
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .category-card {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+  }
+
+  .category-icon {
+    font-size: 1.8rem;
+  }
+
+  .category-name {
+    font-size: 0.85rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .category-card {
+    transition: none;
+  }
+
+  .category-card:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .category-card {
+    border: 2px solid var(--text-primary);
+  }
+}

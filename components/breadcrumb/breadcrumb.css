@@ -6,7 +6,7 @@
 
 .breadcrumb-nav {
   width: 100%;
-  padding: 16px 0;
+  padding: 16px 16px;
 }
 
 .breadcrumb-list {
@@ -49,7 +49,7 @@
 }
 
 .breadcrumb-current {
-  color: var(--text-primary);
+  color: var(--rushgames-primary);
   font-size: 0.95rem;
   font-weight: 600;
 }
