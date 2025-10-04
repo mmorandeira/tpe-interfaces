@@ -1,65 +1,68 @@
 :host {
-    display: block;
-    color: #e9f0ff;
-    font-family: Inter, system-ui, sans-serif;
+  display: block;
+  color: #e9f0ff;
+  font-family: Inter, system-ui, sans-serif;
 }
 
 /* layout con avatar a la izquierda */
 .item {
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 12px;
-    align-items: start;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: start;
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #223049;
-    /* placeholder si no carga */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #223049;
+  /* placeholder si no carga */
 }
 
 .content {
-    display: grid;
-    gap: 6px;
-    min-width: 0px;
+  display: grid;
+  gap: 6px;
+  min-width: 0px;
 }
 
 .meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    line-height: 1;
-    color: #9fb0cf;
-    font-size: 12px;
-    margin-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  line-height: 1;
+  color: #9fb0cf;
+  font-size: 12px;
+  margin-bottom: 4px;
 }
 
 .meta strong {
-    color: #e9f0ff;
-    font-weight: 600;
+  color: #e9f0ff;
+  font-weight: 600;
 }
 
 .meta time {
-    color: #9fb0cf;
+  color: #9fb0cf;
 }
 
 .body {
   margin: 0;
   font-size: 14px;
   line-height: 1.45;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
-p { overflow-wrap: anywhere; word-break: break-word; }
+p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 
 /* clamp por líneas (3 por defecto, se puede sobrescribir con --max-lines) */
-.clamped{
+.clamped {
   line-clamp: var(--max-lines, 3);
   display: -webkit-box;
   -webkit-line-clamp: var(--max-lines, 3);
@@ -71,7 +74,7 @@ p { overflow-wrap: anywhere; word-break: break-word; }
 }
 
 /* botón “ver más / ver menos” */
-.more{
+.more {
   background: transparent;
   color: #9fb0cf;
   border: 0;
@@ -81,4 +84,6 @@ p { overflow-wrap: anywhere; word-break: break-word; }
   text-decoration: underline;
   width: fit-content;
 }
-.more:focus{ outline: none; }
+.more:focus {
+  outline: none;
+}

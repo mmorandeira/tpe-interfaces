@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>RUSHgames</title>
-    <link rel="stylesheet" href="./main.css">
-</head>
-    <body>
-        <!--with auto-start we call the method of the component attributeChangedCallback-->
-        <rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>
-        
-        <my-navbar></my-navbar>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <!--with auto-start we call the method of the component attributeChangedCallback-->
+    <rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>
 
-        <div style="padding: 50px; color: white; background: #222;">
-            <h1>Bienvenido a mi página</h1>
-            <p>Este es un ejemplo con Web Components.</p>
-        </div>
+    <my-navbar></my-navbar>
 
-        <!-- Component imports -->
-        <script src="./components/navbar/navbar.js"></script>
-        <script src="./components/loading/loading.js"></script>
-    </body>
+    <div style="padding: 50px; color: white; background: #222">
+      <h1>Bienvenido a mi página</h1>
+      <p>Este es un ejemplo con Web Components.</p>
+    </div>
+
+    <!-- Component imports -->
+    <script src="./components/navbar/navbar.js"></script>
+    <script src="./components/loading/loading.js"></script>
+  </body>
 </html>

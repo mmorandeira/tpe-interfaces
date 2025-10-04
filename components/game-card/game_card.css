@@ -70,11 +70,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
   opacity: 0;
   display: flex;
   align-items: center;
@@ -161,11 +157,7 @@
 }
 
 .star.half-filled {
-  background: linear-gradient(
-    90deg,
-    var(--rushgames-primary) 50%,
-    var(--neutral-border) 50%
-  );
+  background: linear-gradient(90deg, var(--rushgames-primary) 50%, var(--neutral-border) 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -270,7 +262,7 @@
 }
 
 .game-card.featured::before {
-  content: "DESTACADO";
+  content: 'DESTACADO';
   position: absolute;
   top: 1rem;
   left: 1rem;

@@ -1,293 +1,291 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--neutral-black);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--neutral-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
 }
 
 .loading-overlay.fade-out {
-    opacity: 0;
-    visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .loading-container {
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
 }
 
 .loading-logo {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--text-primary);
-    font-family: 'Arial', sans-serif;
-    margin-bottom: 2rem;
-    animation: logoGlow 2s ease-in-out infinite alternate;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 2rem;
+  animation: logoGlow 2s ease-in-out infinite alternate;
 }
 
 .loading-logo span {
-    color: var(--rushgames-primary);
+  color: var(--rushgames-primary);
 }
 
 @keyframes logoGlow {
-    0% {
-        text-shadow: 0 0 20px rgba(183, 243, 77, 0.3);
-    }
-    100% {
-        text-shadow: 0 0 40px rgba(183, 243, 77, 0.6);
-    }
+  0% {
+    text-shadow: 0 0 20px rgba(183, 243, 77, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(183, 243, 77, 0.6);
+  }
 }
 
 /* Loading Spinner */
 .loading-spinner {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 2rem;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 2rem;
 }
 
 .spinner-ring {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 4px solid transparent;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
 }
 
 .spinner-ring:nth-child(1) {
-    border-top-color: var(--rushgames-primary);
-    animation-duration: 1.5s;
+  border-top-color: var(--rushgames-primary);
+  animation-duration: 1.5s;
 }
 
 .spinner-ring:nth-child(2) {
-    border-right-color: var(--rushgames-accent);
-    animation-duration: 2s;
-    animation-direction: reverse;
+  border-right-color: var(--rushgames-accent);
+  animation-duration: 2s;
+  animation-direction: reverse;
 }
 
 .spinner-ring:nth-child(3) {
-    border-bottom-color: var(--rushgames-secondary);
-    animation-duration: 2.5s;
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 10%;
+  border-bottom-color: var(--rushgames-secondary);
+  animation-duration: 2.5s;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Progress Bar */
 .loading-progress {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .progress-bar {
-    width: 100%;
-    height: 8px;
-    background: var(--neutral-border);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    position: relative;
+  width: 100%;
+  height: 8px;
+  background: var(--neutral-border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
 .progress-fill {
-    height: 100%;
-    background: linear-gradient(
-        90deg, 
-        var(--rushgames-primary), 
-        var(--rushgames-accent), 
-        var(--rushgames-secondary)
-    );
-    border-radius: 4px;
-    width: 0%;
-    transition: width 0.3s ease;
-    position: relative;
-    overflow: hidden;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--rushgames-primary),
+    var(--rushgames-accent),
+    var(--rushgames-secondary)
+  );
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .progress-fill::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-    );
-    transform: translateX(-100%);
-    animation: progressShimmer 2s infinite;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  animation: progressShimmer 2s infinite;
 }
 
 @keyframes progressShimmer {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .progress-text {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    font-family: 'Arial', sans-serif;
-    animation: textFade 3s ease-in-out infinite;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  animation: textFade 3s ease-in-out infinite;
 }
 
 @keyframes textFade {
-    0%, 100% {
-        opacity: 0.7;
-    }
-    50% {
-        opacity: 1;
-    }
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Percentage Display */
 .loading-percentage {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--rushgames-primary);
-    font-family: 'Arial', sans-serif;
-    text-shadow: 0 0 20px rgba(183, 243, 77, 0.5);
-    animation: percentagePulse 1s ease-in-out infinite alternate;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--rushgames-primary);
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 20px rgba(183, 243, 77, 0.5);
+  animation: percentagePulse 1s ease-in-out infinite alternate;
 }
 
 @keyframes percentagePulse {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.05);
-    }
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }
 
 /* Loading Messages Animation */
 .progress-text.change-message {
-    animation: messageChange 0.5s ease-in-out;
+  animation: messageChange 0.5s ease-in-out;
 }
 
 @keyframes messageChange {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    50% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .loading-logo {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .loading-spinner {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .loading-percentage {
-        font-size: 2rem;
-    }
-    
-    .progress-text {
-        font-size: 0.9rem;
-    }
+  .loading-logo {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .loading-spinner {
+    width: 100px;
+    height: 100px;
+  }
+
+  .loading-percentage {
+    font-size: 2rem;
+  }
+
+  .progress-text {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .loading-logo {
-        font-size: 2rem;
-    }
-    
-    .loading-spinner {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .loading-percentage {
-        font-size: 1.5rem;
-    }
-    
-    .progress-text {
-        font-size: 0.8rem;
-    }
-    
-    .loading-container {
-        padding: 1rem;
-    }
+  .loading-logo {
+    font-size: 2rem;
+  }
+
+  .loading-spinner {
+    width: 80px;
+    height: 80px;
+  }
+
+  .loading-percentage {
+    font-size: 1.5rem;
+  }
+
+  .progress-text {
+    font-size: 0.8rem;
+  }
+
+  .loading-container {
+    padding: 1rem;
+  }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-    .loading-logo,
-    .spinner-ring,
-    .progress-fill::before,
-    .progress-text,
-    .loading-percentage {
-        animation: none;
-    }
-    
-    .progress-fill {
-        transition: none;
-    }
+  .loading-logo,
+  .spinner-ring,
+  .progress-fill::before,
+  .progress-text,
+  .loading-percentage {
+    animation: none;
+  }
+
+  .progress-fill {
+    transition: none;
+  }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-    .loading-overlay {
-        background: #000000;
-    }
-    
-    .loading-logo {
-        color: #ffffff;
-        text-shadow: none;
-    }
-    
-    .loading-logo span {
-        color: #00ff00;
-    }
-    
-    .loading-percentage {
-        color: #00ff00;
-        text-shadow: none;
-    }
+  .loading-overlay {
+    background: #000000;
+  }
+
+  .loading-logo {
+    color: #ffffff;
+    text-shadow: none;
+  }
+
+  .loading-logo span {
+    color: #00ff00;
+  }
+
+  .loading-percentage {
+    color: #00ff00;
+    text-shadow: none;
+  }
 }

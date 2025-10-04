@@ -1,24 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Web Component Navbar</title>
-</head>
-    <body>
-        <!-- Uso directo del componente -->
-        <my-navbar></my-navbar>
+  </head>
+  <body>
+    <!-- Uso directo del componente -->
+    <my-navbar></my-navbar>
 
-        <div style="padding: 50px; color: white; background: #222;">
-            <h1>página del juego</h1>
-            <p>Este es un ejemplo con Web Components.</p>
-        </div>
-        
-        <comment-section></comment-section>
+    <div style="padding: 50px; color: white; background: #222">
+      <h1>página del juego</h1>
+      <p>Este es un ejemplo con Web Components.</p>
+    </div>
 
-        <!-- Importamos el componente -->
-        <script src="./components/navbar/navbar.js" defer></script>
-        <script src="./components/comments/comment-section/comment-section.js" defer></script>
-        <script src="./components/comments/comment-item/comment-item.js" defer></script>
-        <script src="./components/comments/comment-composer/comment-composer.js" defer></script>
-    </body>
+    <comment-section></comment-section>
+
+    <!-- Importamos el componente -->
+    <script src="./components/navbar/navbar.js" defer></script>
+    <script src="./components/comments/comment-section/comment-section.js" defer></script>
+    <script src="./components/comments/comment-item/comment-item.js" defer></script>
+    <script src="./components/comments/comment-composer/comment-composer.js" defer></script>
+    <script src="./components/comments/reply-row/reply-row.js" defer></script>
+    <script src="./components/comments/action-row/action-row.js" defer></script>
+    <script src="./components/comments/input-row/input-row.js" defer></script>
+    <script src="./components/comments/replies-thread/replies-thread.js" defer></script>
+  </body>
 </html>

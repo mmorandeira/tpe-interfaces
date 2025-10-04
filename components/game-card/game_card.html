@@ -1,25 +1,28 @@
 <template id="game-card-template">
-    <article class="game-card" role="group">
-        <div class="game-image-container">
-            <img class="game-image" 
-                 alt="" 
-                 loading="lazy"
-                 id="gameImage">
+  <article class="game-card" role="group">
+    <div class="game-image-container">
+      <img class="game-image" alt="" loading="lazy" id="gameImage" />
+    </div>
+    <div class="game-info">
+      <div class="game-header">
+        <div>
+          <h3 class="game-title" id="gameTitle" style="text-align: left">Título del Juego</h3>
+          <div
+            class="game-rating"
+            id="gameRating"
+            role="img"
+            aria-label=""
+            style="margin-top: 0.2rem"
+          >
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
         </div>
-        <div class="game-info">
-            <div class="game-header">
-                <div>
-                    <h3 class="game-title" id="gameTitle" style="text-align:left;">Título del Juego</h3>
-                    <div class="game-rating" id="gameRating" role="img" aria-label="" style="margin-top:0.2rem;">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                </div>
-                <button class="play-btn primary" id="playBtn" aria-label="Jugar">Play</button>
-            </div>
-        </div>
-    </article>
+        <button class="play-btn primary" id="playBtn" aria-label="Jugar">Play</button>
+      </div>
+    </div>
+  </article>
 </template>
