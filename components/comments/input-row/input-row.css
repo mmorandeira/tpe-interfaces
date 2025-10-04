@@ -1,6 +1,10 @@
 :host {
   display: block;
   font-family: Inter, system-ui, sans-serif;
+  --input: #0f1522;
+  --border: #22304b;
+  --text: #e9f0ff;
+  --muted: #9fb0cf;
 }
 .row {
   display: grid;

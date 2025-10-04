@@ -18,8 +18,8 @@ class RepliesThread extends HTMLElement {
     this._actions = $('actions');
 
     // eventos de acciones (Cancelar/Comentar)
-    this._actions.addEventListener('action:primary', () => this._input.clear()); // Cancelar
-    this._actions.addEventListener('action:secondary', () => {
+    this._actions.addEventListener('action:secondary', () => this._input.clear()); // Cancelar
+    this._actions.addEventListener('action:primary', () => {
       const text = this._input.value.trim();
       if (!text) return;
       this.dispatchEvent(new CustomEvent('reply:submit', { detail: { text }, bubbles: true }));

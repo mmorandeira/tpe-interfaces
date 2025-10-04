@@ -2,7 +2,10 @@ class CommentItem extends HTMLElement {
   constructor() {
     super();
     this._root = this.attachShadow({ mode: 'open' });
+
+    this.ready = new Promise((resolve) => (this._resolveReady = resolve));
   }
+
   async connectedCallback() {
     const [html, css] = await Promise.all([
       fetch('./components/comments/comment-item/comment-item.html').then((r) => r.text()),
@@ -65,15 +68,19 @@ class CommentItem extends HTMLElement {
 
     // botones: Responder / Ver respuestas (toggle)
     this._actions.addEventListener('action:primary', () => {
-      // Responder
-      this._thread.open();
+      this.openThread();
       this._thread.focusInput();
-      this._updateSecondaryLabel(true);
     });
     this._actions.addEventListener('action:secondary', () => {
-      // Ver/Ocultar
-      this._thread.toggle();
-      this._updateSecondaryLabel(this._thread._open);
+      if (this._thread._open) {
+        this._thread.close();
+        this._updateSecondaryLabel(false);
+        this.dispatchEvent(new CustomEvent('thread:close', { bubbles: true }));
+      } else {
+        this._thread.open();
+        this._updateSecondaryLabel(true);
+        this.dispatchEvent(new CustomEvent('thread:open', { bubbles: true }));
+      }
     });
 
     // cuando el thread emite reply, redisparamos hacia arriba
@@ -83,7 +90,17 @@ class CommentItem extends HTMLElement {
       );
     });
 
+    this._actions.addEventListener('action:secondary', () => {
+      this._thread.toggle();
+      const isOpen = this._thread._open;
+      this._updateSecondaryLabel(isOpen);
+      this.dispatchEvent(
+        new CustomEvent(isOpen ? 'thread:open' : 'thread:close', { bubbles: true })
+      );
+    });
+
     this._updateSecondaryLabel(false);
+    this._resolveReady?.();
   }
 
   _updateSecondaryLabel(open) {
@@ -94,6 +111,14 @@ class CommentItem extends HTMLElement {
 
   disconnectedCallback() {
     if (this._resizeHandler) window.removeEventListener('resize', this._resizeHandler);
+  }
+  openThread() {
+    this._thread.open();
+    this._updateSecondaryLabel(true);
+  }
+  setReplies(replies) {
+    this._thread.replies = replies || [];
+    this._updateSecondaryLabel(this._thread._open);
   }
 }
 customElements.define('comment-item', CommentItem);
