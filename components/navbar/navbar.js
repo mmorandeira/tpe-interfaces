@@ -25,6 +25,10 @@ class MyNavbar extends HTMLElement {
 
             this.setupEventListeners();
             this.updateUI(); // Inicializar el estado de la UI
+
+            window.addEventListener('resize', () => {
+                this.updateUI();
+            });
         });
     }
 
@@ -34,7 +38,7 @@ class MyNavbar extends HTMLElement {
         const mobileLoginButton = this.shadowRoot.querySelector('.mobile-login-button');
         const loginButton = this.shadowRoot.querySelector('.login-button');
         const mobileLogoutButton = this.shadowRoot.querySelector('.mobile-logout-button');
-        
+        const mobileLoginBtn = this.shadowRoot.querySelector('.mobile-login-btn');
         // Toggle mobile menu
         hamburger?.addEventListener('click', () => {
             mobileMenu?.classList.toggle('active');
@@ -53,6 +57,10 @@ class MyNavbar extends HTMLElement {
         });
 
         loginButton?.addEventListener('click', () => {
+            this.handleLogin();
+        });
+
+        mobileLoginBtn?.addEventListener('click', () => {
             this.handleLogin();
         });
 
@@ -77,22 +85,59 @@ class MyNavbar extends HTMLElement {
     }
 
     updateUI() {
-        const navbarRightLoggedIn = this.shadowRoot.querySelector('.navbar-right-logged-in');
-        const navbarRightLoggedOut = this.shadowRoot.querySelector('.navbar-right-logged-out');
-        const navbarHamburgerMenuLoggedIn = this.shadowRoot.querySelector('.mobile-logout-button');
-        const navbarHamburgerMenuLoggedOut = this.shadowRoot.querySelector('.mobile-login-button');
-
+        const elements = this.getUIElements();
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        
         if (this.navbarData.isLoggedIn) {
-            navbarRightLoggedOut.style.display = 'none';
-            navbarRightLoggedIn.style.display = 'flex';
-            navbarHamburgerMenuLoggedOut.style.display = 'none';
-            navbarHamburgerMenuLoggedIn.style.display = 'flex';
+            this.hideElements(elements.loggedOut, isMobile);
+            this.showElements(elements.loggedIn, isMobile);
         } else {
-            navbarRightLoggedOut.style.display = 'flex';
-            navbarRightLoggedIn.style.display = 'none';
-            navbarHamburgerMenuLoggedOut.style.display = 'flex';
-            navbarHamburgerMenuLoggedIn.style.display = 'none';
+            this.hideElements(elements.loggedIn, isMobile);
+            this.showElements(elements.loggedOut, isMobile);
         }
+    }
+
+    getUIElements() {
+        return {
+            loggedIn: {
+                desktop: [
+                    this.shadowRoot.querySelector('.navbar-right-logged-in'),
+                    this.shadowRoot.querySelector('.mobile-logout-button')
+                ],
+                mobile: [
+                    this.shadowRoot.querySelector('.mobile-navbar-right-logged-in'),
+                    this.shadowRoot.querySelector('.mobile-logout-button')
+                ]
+            },
+            loggedOut: {
+                desktop: [
+                    this.shadowRoot.querySelector('.navbar-right-logged-out'),
+                    this.shadowRoot.querySelector('.mobile-login-button')
+                ],
+                mobile: [
+                    this.shadowRoot.querySelector('.mobile-navbar-right-logged-out'),
+                    this.shadowRoot.querySelector('.mobile-login-button')
+                ]
+            }
+        };
+    }
+
+    hideElements(elements, isMobile) {
+        const elementsToHide = isMobile ? elements.mobile : elements.desktop;
+        elementsToHide.forEach(element => {
+            if (element) {
+                element.style.display = 'none';
+            }
+        });
+    }
+
+    showElements(elements, isMobile) {
+        const elementsToShow = isMobile ? elements.mobile : elements.desktop;
+        elementsToShow.forEach(element => {
+            if (element) {
+                element.style.display = 'flex';
+            }
+        });
     }
 }
 

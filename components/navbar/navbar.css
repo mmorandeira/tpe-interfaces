@@ -47,11 +47,11 @@
 }
 
 .logo {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
     cursor: pointer;
     color: var(--text-primary);
-    font-family: 'Arial', sans-serif;
+    font-family: var(--text-title);    
     width: 240px;
     height: 36px;
 }
@@ -67,7 +67,7 @@
     border-radius: 15px;
     padding: 10px 18px;
     width: 450px;
-    height: 36px;
+    height: 34px;
     margin: 0 15px;
 }
 
@@ -402,7 +402,7 @@
     border: none;
     padding: 15px 20px;
     cursor: pointer;
-    display: flex;
+    display: none; /* Inicialmente ocultos, controlados por JS */
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -448,6 +448,44 @@
     color: var(--rushgames-primary);
 }
 
+/* Default mobile navbar elements hidden on desktop */
+.mobile-navbar-right-logged-out {
+    display: none;
+}
+
+.mobile-navbar-right-logged-in {
+    display: none;
+}
+
+/* Desktop navbar elements - add .navbar-right-logged-out rule */
+.navbar-right-logged-out {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.mobile-search-container {
+    display: none;
+}
+
+/* Mobile login button styles */
+.mobile-login-btn {
+    background: none;
+    border: 2px solid var(--rushgames-primary);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.mobile-login-btn:hover {
+    background-color: var(--rushgames-primary);
+    color: var(--neutral-black);
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -457,14 +495,17 @@
     
     .navbar {
         padding: 12px 15px;
+        position: relative;
     }
     
     .navbar-left {
         gap: 10px;
+        flex: 1;
     }
     
     .logo {
-        font-size: 18px;
+        font-size: 30px;
+        margin-left: 10px;
     }
     
     .login-button {
@@ -472,48 +513,105 @@
         padding: 6px 12px;
     }
     
-    /* Responsive for logged in elements */
-    .navbar-right-logged-in {
-        gap: 12px;
+    /* Hide ALL desktop right sections on mobile - with higher specificity */
+    .navbar .navbar-right-logged-in,
+    .navbar .navbar-right-logged-out {
+        display: none !important;
     }
     
-    .coins-section {
-        padding: 4px 8px;
+    /* Mobile elements - controlled by JavaScript */
+    .navbar .mobile-navbar-right-logged-out {
+        display: none;
+        align-items: center;
+        gap: 15px;
     }
     
-    .coin-amount {
+    .navbar .mobile-navbar-right-logged-in {
+        display: none;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .mobile-notifications-btn {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-notifications-btn:hover {
+        background-color: var(--rushgames-primary);
+        color: var(--neutral-black);
+    }
+    
+    .mobile-profile-section {
+        display: flex;
+        align-items: center;
+    }
+    
+    .mobile-profile-image {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--rushgames-primary);
+        background-color: var(--rushgames-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .mobile-profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Mobile search in hamburger menu */
+    .mobile-search-container {
+        display: flex !important;
+        align-items: center;
+        background-color: var(--text-primary);
+        border-radius: 12px;
+        padding: 8px 12px;
+        margin: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .mobile-search-input {
+        background: none;
+        border: none;
+        color: var(--neutral-black);
+        outline: none;
+        flex: 1;
         font-size: 14px;
-        min-width: 35px;
+        padding: 3px 6px;
     }
     
-    .action-buttons {
-        gap: 8px;
-        padding-left: 12px;
+    .mobile-search-input::placeholder {
+        color: var(--neutral-black);
+        opacity: 0.7;
     }
     
-    .action-btn {
-        padding: 6px;
+    .mobile-search-button {
+        background: none;
+        border: none;
+        color: var(--neutral-black);
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
-    .profile-section {
-        padding-left: 12px;
-    }
-    
-    .profile-image {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .level-section {
-        min-width: 40px;
-    }
-    
-    .level-number {
-        font-size: 16px;
-    }
-    
-    .experience-bar {
-        width: 40px;
+    .mobile-search-button:hover {
+        color: var(--rushgames-accent);
     }
 }
 
@@ -524,60 +622,51 @@
     
     .logo {
         font-size: 16px;
+        margin-left: 8px;
     }
     
-    .login-button {
-        font-size: 11px;
+    .hamburger-menu {
+        width: 40px;
+        height: 40px;
+        padding: 6px;
+    }
+    
+    .hamburger-menu span {
+        width: 20px;
+        height: 2px;
+    }
+    
+    .navbar .mobile-navbar-right-logged-out,
+    .navbar .mobile-navbar-right-logged-in {
+        gap: 12px;
+    }
+    
+    .mobile-login-btn {
+        font-size: 12px;
         padding: 5px 10px;
     }
     
-    /* Very small screens - simplify logged in elements */
-    .navbar-right-logged-in {
-        gap: 8px;
+    .mobile-notifications-btn {
+        padding: 6px;
     }
     
-    .coins-section {
-        padding: 3px 6px;
+    .mobile-notifications-btn svg {
+        width: 18px;
+        height: 18px;
     }
     
-    .coin-amount {
-        font-size: 12px;
-        min-width: 30px;
+    .mobile-profile-image {
+        width: 28px;
+        height: 28px;
     }
     
-    .action-buttons {
-        gap: 6px;
-        padding-left: 8px;
+    .mobile-search-container {
+        margin: 15px;
+        margin-bottom: 12px;
+        padding: 6px 10px;
     }
     
-    .action-btn {
-        padding: 4px;
-    }
-    
-    .action-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .profile-section {
-        padding-left: 8px;
-    }
-    
-    .profile-image {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .level-section {
-        min-width: 35px;
-    }
-    
-    .level-number {
-        font-size: 14px;
-    }
-    
-    .experience-bar {
-        width: 35px;
-        height: 3px;
+    .mobile-search-input {
+        font-size: 13px;
     }
 }
