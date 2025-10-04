@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+  --input: #0f1522;
+  --border: #22304b;
+  --text: #e9f0ff;
+  --muted: #9fb0cf;
+}
+.row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #cfd5e1;
+}
+textarea {
+  width: 100%;
+  max-width: 100%;
+  resize: none;
+  overflow: hidden;
+  background: #0f1522;
+  color: #e9f0ff;
+  border: 1px solid #22304b;
+  border-radius: 999px;
+  padding: 8px 12px;
+  min-height: 36px;
+  outline: none;
+}
+textarea::placeholder {
+  color: #9fb0cf;
+}

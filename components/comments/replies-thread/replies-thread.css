@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+}
+.thread {
+  margin-top: 8px;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.composer {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}

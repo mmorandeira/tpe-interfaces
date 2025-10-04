@@ -1,0 +1,45 @@
+<template id="navbar-template">
+  <nav class="navbar">
+    <div class="navbar-left">
+      <button class="hamburger-menu" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="logo">RUSH<span>games</span></div>
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Busca tu juego favorito..." />
+        <button class="search-button">
+          <!--Ver otra solucion o preguntarle a pato si le tenemos que explicar esto en una defensa-->
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <button class="login-button">Iniciar sesión</button>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="nav-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Juegos</a></li>
+        <li><a href="#">Categorías</a></li>
+        <li><a href="#">Mi Cuenta</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+</template>

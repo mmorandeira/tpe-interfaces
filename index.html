@@ -1,20 +1,23 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Entrega</title>
+    <meta charset="UTF-8" />
+    <title>RUSHgames</title>
+    <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-    <h1>Entrega</h1>
+    <!--with auto-start we call the method of the component attributeChangedCallback-->
+    <rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>
 
-    <p>
-      <a href="https://www.figma.com/design/EzX91L515eRjEfgCKfbJLJ/proyectoInterfaces?node-id=275-1431&t=7aSI8W3udJnNCr3H-1" target="_blank" rel="noopener">Editor</a>
-      <!-- TODO: reemplazar FIGMA_EDITOR_URL -->
-    </p>
-    <p>
-      <a href="https://www.figma.com/proto/EzX91L515eRjEfgCKfbJLJ/proyectoInterfaces?node-id=275-1431&t=ayEAzEpCDVCf4jyQ-1" target="_blank" rel="noopener">Presentación</a>
-      <!-- TODO: reemplazar FIGMA_PRESENT_URL -->
-    </p>
+    <my-navbar></my-navbar>
+
+    <div style="padding: 50px; color: white; background: #222">
+      <h1>Bienvenido a mi página</h1>
+      <p>Este es un ejemplo con Web Components.</p>
+    </div>
+
+    <!-- Component imports -->
+    <script src="./components/navbar/navbar.js"></script>
+    <script src="./components/loading/loading.js"></script>
   </body>
 </html>

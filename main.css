@@ -1,0 +1,46 @@
+:root {
+  /* Neutral Colors */
+  --neutral-black: #0e0f10;
+  --neutral-surface: #14171b;
+  --neutral-surface-variant: #1a1f24;
+  --neutral-border: #2b323a;
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+
+  /* RushGames - Primary Colors */
+  --rushgames-accent: #7ed321;
+  --rushgames-primary: #b7f34d;
+  --rushgames-primary-l1: #d9ff46;
+  --rushgames-primary-l3: #ecffcf;
+  --rushgames-primary-d1: #94c93e;
+  --rushgames-primary-d2: #6f982f;
+
+  /* RushGames - Secondary Colors */
+  --rushgames-secondary: #10c27c;
+  --rushgames-secondary-d1: #0da168;
+  --rushgames-secondary-d2: #0b8053;
+  --rushgames-secondary-d3: #085e3e;
+
+  /* RushGames - Accent Variants */
+  --rushgames-accent-l1: #e6ff7a;
+  --rushgames-accent-l2: #f0ffaa;
+  --rushgames-accent-l3: #f9ffda;
+  --rushgames-accent-d1: #bfd63c;
+  --rushgames-accent-d2: #95a931;
+  --rushgames-accent-d3: #6a7a24;
+}
+
+/* Reset básico y configuración global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--neutral-surface);
+  color: var(--text-primary);
+}

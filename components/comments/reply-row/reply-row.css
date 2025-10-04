@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  color: #e9f0ff;
+  font-family: Inter, system-ui, sans-serif;
+}
+.row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #cfd5e1;
+}
+.meta {
+  color: #9fb0cf;
+  font-size: 12px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  line-height: 1;
+}
+.meta strong {
+  color: #e9f0ff;
+  font-weight: 600;
+}
+.body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
