@@ -141,4 +141,4 @@ class MyNavbar extends HTMLElement {
     }
 }
 
-customElements.define("my-navbar", MyNavbar);
+customElements.define("rushgame-navbar", MyNavbar);
