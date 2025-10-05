@@ -41,6 +41,6 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: var(--neutral-surface);
+  background: linear-gradient(180deg, #292929 0%, #252525 100%);
   color: var(--text-primary);
 }
