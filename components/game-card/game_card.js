@@ -14,31 +14,33 @@ class RushGameCard extends HTMLElement {
         this.init();
     }
 
-    async init() {
-        try {
-            const [html, css] = await Promise.all([
-                fetch("./components/game-card/game_card.html").then(res => res.text()),
-                fetch("./components/game-card/game_card.css").then(res => res.text())
-            ]);
+  async init() {
+    try {
+      const [html, css] = await Promise.all([
+        fetch('./components/game-card/game_card.html').then((res) => res.text()),
+        fetch('./components/game-card/game_card.css').then((res) => res.text()),
+      ]);
 
-            const template = document.createElement("template");
-            template.innerHTML = `
+      const template = document.createElement('template');
+      template.innerHTML = `
                 <style>${css}</style>
-                ${html.replace('<template id="game-card-template">', '').replace('</template>', '').replace(/<style>.*?<\/style>/s, '')}
+                ${html
+                  .replace('<template id="game-card-template">', '')
+                  .replace('</template>', '')
+                  .replace(/<style>.*?<\/style>/s, '')}
             `;
-            
-            const content = template.content.cloneNode(true);
-            this.shadowRoot.appendChild(content);
-            
-            this.setupElements();
-            this.setupEventListeners();
-            this.updateDisplay();
-            
-        } catch (error) {
-            console.error('Error loading RushGameCard component:', error);
-            this.renderErrorState();
-        }
+
+      const content = template.content.cloneNode(true);
+      this.shadowRoot.appendChild(content);
+
+      this.setupElements();
+      this.setupEventListeners();
+      this.updateDisplay();
+    } catch (error) {
+      console.error('Error loading RushGameCard component:', error);
+      this.renderErrorState();
     }
+  }
 
     setupElements() {
         this.card = this.shadowRoot.querySelector('.game-card');
@@ -109,14 +111,14 @@ class RushGameCard extends HTMLElement {
         
     }
 
-    connectedCallback() {
-        this.setAttribute('tabindex', '0');
-        console.log('RushGameCard connected to DOM');
-    }
+  connectedCallback() {
+    this.setAttribute('tabindex', '0');
+    console.log('RushGameCard connected to DOM');
+  }
 
-    disconnectedCallback() {
-        console.log('RushGameCard disconnected from DOM');
-    }
+  disconnectedCallback() {
+    console.log('RushGameCard disconnected from DOM');
+  }
 
     static get observedAttributes() {
         return ['game-id', 'title', 'image', 'rating'];
@@ -143,4 +145,4 @@ class RushGameCard extends HTMLElement {
     }
 }
 
-customElements.define("rush-game-card", RushGameCard);
+customElements.define('rush-game-card', RushGameCard);

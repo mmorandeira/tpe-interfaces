@@ -1,45 +1,45 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 16px;
-    background-color: var(--neutral-black);
-    position: relative;
-    height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--neutral-black);
+  position: relative;
+  height: 60px;
 }
 
 .navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .hamburger-menu {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 8px;
-    width: 50px;
-    height: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 8px;
+  width: 50px;
+  height: 50px;
 }
 
 .hamburger-menu span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--rushgames-primary);
-    border-radius: 1px;
-    transition: all 0.3s ease;
+  width: 25px;
+  height: 3px;
+  background-color: var(--rushgames-primary);
+  border-radius: 1px;
+  transition: all 0.3s ease;
 }
 
 .hamburger-menu:hover span {
@@ -57,7 +57,7 @@
 }
 
 .logo span {
-    color : var(--rushgames-primary);
+  color: var(--rushgames-primary);
 }
 
 .search-container {
@@ -82,18 +82,18 @@
 }
 
 .search-input::placeholder {
-    color: var(--neutral-black);
+  color: var(--neutral-black);
 }
 
 .search-button {
-    background: none;
-    border: none;
-    color: var(--neutral-black);
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: none;
+  border: none;
+  color: var(--neutral-black);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-button:hover {
@@ -101,12 +101,12 @@
 }
 
 .login-button {
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    padding: 6px 12px; 
-    cursor: pointer;
-    font-size: 20px;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 /* Logged in navbar styles */
@@ -290,11 +290,11 @@
 }
 
 .nav-links li {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .nav-links li:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .nav-item {

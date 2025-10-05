@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  /* tokens locales similares a tu card */
+  --panel: #121826;
+  --input: #0f1522;
+  --border: #22304b;
+  --text: #e9f0ff;
+  --muted: #9fb0cf;
+  --accent: #c7ff34;
+  /* verde */
+  --accent-ink: #0b0f14;
+  --radius: 12px;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.composer {
+  display: grid;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: center;
+  max-width: 100%;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #cfd5e1;
+  object-fit: cover;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  resize: none;
+  overflow-y: hidden;
+  line-height: 20px;
+  color: var(--text);
+  background: var(--input);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 14px;
+  outline: none;
+  min-height: 40px;
+}
+
+textarea::placeholder {
+  color: var(--muted);
+}
+
+textarea.multiline {
+  border-radius: 12px;
+}
+
+/* acciones */
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-left: 52px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn.secondary {
+  background: #24314a;
+  color: var(--text);
+}

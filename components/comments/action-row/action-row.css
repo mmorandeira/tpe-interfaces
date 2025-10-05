@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+}
+.row {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.primary {
+  background: #c7ff34;
+  color: #0b0f14;
+}
+.secondary {
+  background: #24314a;
+  color: #e9f0ff;
+}
+.hidden {
+  display: none;
+}

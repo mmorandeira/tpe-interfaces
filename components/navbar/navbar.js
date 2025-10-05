@@ -1,7 +1,7 @@
 class MyNavbar extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
 
         this.navbarData = {
             isLoggedIn: false,
@@ -18,7 +18,10 @@ class MyNavbar extends HTMLElement {
             const template = document.createElement("template");
             template.innerHTML = `
                 <style>${css}</style>
-                ${html.replace('<template id="navbar-template">', '').replace('</template>', '').replace(/<style>.*?<\/style>/s, '')}
+                ${html
+                  .replace('<template id="navbar-template">', '')
+                  .replace('</template>', '')
+                  .replace(/<style>.*?<\/style>/s, '')}
             `;
             const content = template.content.cloneNode(true);
             this.shadowRoot.appendChild(content);
