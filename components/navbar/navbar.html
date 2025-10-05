@@ -1,16 +1,19 @@
 <template id="navbar-template">
   <nav class="navbar">
+    <!-- Left section -->
     <div class="navbar-left">
+      <!-- Hamburger menu section-->
       <button class="hamburger-menu" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
       </button>
+      <!-- Logo section-->
       <div class="logo">RUSH<span>games</span></div>
+      <!-- Search section-->
       <div class="search-container">
         <input type="text" class="search-input" placeholder="Busca tu juego favorito..." />
         <button class="search-button">
-          <!--Ver otra solucion o preguntarle a pato si le tenemos que explicar esto en una defensa-->
           <svg
             width="28"
             height="28"
@@ -29,17 +32,439 @@
         </button>
       </div>
     </div>
+    <!-- Right section -->
+    <!-- Desktop navbar layout - Logged Out -->
+    <div class="navbar-right-logged-out">
+      <button class="login-button">Iniciar sesión</button>
+    </div>
+    <!-- Desktop navbar layout - Logged In -->
+    <div class="navbar-right-logged-in">
+      <!-- Monedas section -->
+      <div class="coins-section">
+        <div class="coin-circle">
+          <span>R</span>
+        </div>
+        <span class="coin-amount">1543</span>
+        <button class="add-coins-btn">+</button>
+      </div>
 
-    <button class="login-button">Iniciar sesión</button>
+      <!-- Action buttons section -->
+      <div class="action-buttons">
+        <button class="action-btn community-btn">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+            <path
+              d="M23 21v-2a4 4 0 0 0-3-3.87"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M16 3.13a4 4 0 0 1 0 7.75"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <button class="action-btn notifications-btn">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.73 21a2 2 0 0 1-3.46 0"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <button class="action-btn favorites-btn">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
 
+      <!-- Profile section -->
+      <div class="profile-section">
+        <div class="profile-image">
+          <img src="" alt="Perfil" />
+        </div>
+      </div>
+
+      <!-- Level section -->
+      <div class="level-section">
+        <div class="level-number">13</div>
+        <div class="experience-bar">
+          <div class="experience-fill" style="width: 65%"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile navbar layout - Logged Out -->
+    <div class="mobile-navbar-right-logged-out">
+      <button class="mobile-login-btn">Iniciar sesión</button>
+    </div>
+
+    <!-- Mobile navbar layout - Logged In -->
+    <div class="mobile-navbar-right-logged-in">
+      <button class="mobile-notifications-btn">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M13.73 21a2 2 0 0 1-3.46 0"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <div class="mobile-profile-section">
+        <div class="mobile-profile-image">
+          <img src="" alt="Perfil" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobile-menu">
+      <!-- Search section in mobile menu -->
+      <div class="mobile-search-container">
+        <input type="text" class="mobile-search-input" placeholder="Busca tu juego favorito..." />
+        <button class="mobile-search-button">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
       <ul class="nav-links">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Juegos</a></li>
-        <li><a href="#">Categorías</a></li>
-        <li><a href="#">Mi Cuenta</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li>
+          <a href="#" class="nav-item"><span class="nav-icon">🏠</span>Inicio</a>
+        </li>
+        <li>
+          <a href="#" class="nav-item"><span class="nav-icon">🪙</span>RushCoins</a>
+        </li>
+        <li>
+          <a href="#" class="nav-item"><span class="nav-icon">💬</span>Foro</a>
+        </li>
+        <li class="categories-section">
+          <span class="categories-title">Categorías</span>
+          <ul class="categories-list">
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">⚡</span>Flash</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🎯</span>io</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">👻</span>Terror</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🖱️</span>Clicker</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🎲</span>Disparos</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🏀</span>Baloncesto</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🏍️</span>Motos</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">⚔️</span>Accion</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🗺️</span>Aventura</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🧠</span>Estrategia</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🎮</span>Casual</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🏎️</span>Autos</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">⚽</span>Deportes</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🕹️</span>Arcade</a>
+            </li>
+            <li>
+              <a href="#" class="category-item"><span class="category-icon">🏁</span>Carreras</a>
+            </li>
+          </ul>
+        </li>
       </ul>
+      <div class="social-icons">
+        <a href="#" class="social-icon instagram">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="2"
+              y="2"
+              width="20"
+              height="20"
+              rx="5"
+              ry="5"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </a>
+        <a href="#" class="social-icon facebook">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+          </svg>
+        </a>
+        <a href="#" class="social-icon youtube">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.24c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+            />
+            <polygon
+              points="9.75,15.02 15.5,11.75 9.75,8.48"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </a>
+        <a href="#" class="social-icon twitter">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="menu-footer">
+        <button class="mobile-login-button">
+          <div class="login-icon-container">
+            <svg
+              class="login-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="15"
+                y1="3"
+                x2="21"
+                y2="3"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="15"
+                y1="21"
+                x2="21"
+                y2="21"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="21"
+                y1="3"
+                x2="21"
+                y2="21"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <polyline
+                points="10,17 15,12 10,7"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              />
+              <line
+                x1="15"
+                y1="12"
+                x2="3"
+                y2="12"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <span class="login-text">Iniciar Sesión</span>
+        </button>
+        <button class="mobile-logout-button">
+          <div class="logout-icon-container">
+            <svg
+              class="logout-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="3"
+                y1="3"
+                x2="9"
+                y2="3"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="3"
+                y1="21"
+                x2="9"
+                y2="21"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="3"
+                y1="3"
+                x2="3"
+                y2="21"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <polyline
+                points="16,17 21,12 16,7"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              />
+              <line
+                x1="21"
+                y1="12"
+                x2="9"
+                y2="12"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <span class="logout-text">Cerrar Sesión</span>
+        </button>
+      </div>
     </div>
   </nav>
 </template>

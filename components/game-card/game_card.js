@@ -9,10 +9,6 @@ class RushGameCard extends HTMLElement {
       title: 'Título del Juego',
       image: '',
       rating: 0,
-      category: 'Categoría',
-      description: 'Descripción del juego...',
-      isFavorited: false,
-      isPlaying: false,
     };
 
     this.init();
@@ -58,83 +54,48 @@ class RushGameCard extends HTMLElement {
   setupEventListeners() {
     this.card.addEventListener('click', (e) => {
       if (e.target.closest('button')) return;
-      this.handleCardClick();
+      this.handleClick();
     });
 
     if (this.playBtn) {
       this.playBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        this.handlePlayClick();
+        this.handleClick();
       });
     }
-
-    if (this.favoriteBtn) {
-      this.favoriteBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.handleFavoriteClick();
-      });
-    }
-
-    if (this.gameImage) {
-      this.gameImage.addEventListener('error', () => {
-        this.handleImageError();
-      });
-      this.gameImage.addEventListener('load', () => {
-        this.card.classList.remove('loading');
-      });
-    }
-
-    this.card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.handleCardClick();
-      }
-    });
-  }
-
-  setGameData(data) {
-    this.gameData = { ...this.gameData, ...data };
-    this.updateDisplay();
-
-    this.dispatchEvent(
-      new CustomEvent('gameDataUpdated', {
-        detail: this.gameData,
-        bubbles: true,
-      })
-    );
-  }
-
-  getGameData() {
-    return { ...this.gameData };
   }
 
   updateDisplay() {
+    /* Update title, image, rating, and buttons based on gameData */
+
     if (!this.gameTitle) return;
-    // Truncar el título si es muy largo
+
+    // truncate title if too long
     let title = this.gameData.title;
-    if (title.length > 14) {
-      title = title.slice(0, 11) + '...';
+    if (title.length > 12) {
+      title = title.slice(0, 9) + '...';
     }
     this.gameTitle.textContent = title;
     this.gameTitle.setAttribute('title', this.gameData.title);
 
+    // Update image
     if (this.gameData.image) {
       this.gameImage.src = this.gameData.image;
       this.gameImage.alt = `Imagen de ${this.gameData.title}`;
-    } else {
-      this.setPlaceholderImage();
     }
 
-    // Mostrar estrellas de rating
+    // Update rating stars
     this.updateRating(this.gameData.rating);
-
-    this.updateFavoriteState?.(this.gameData.isFavorited);
-    this.updatePlayingState(this.gameData.isPlaying);
   }
 
   updateRating(rating) {
+    /* Update star display based on rating */
+
     if (!this.stars) return;
+
+    // Clamp rating between 0 and 5
     const clampedRating = Math.max(0, Math.min(5, rating));
+
     this.stars.forEach((star, index) => {
       star.classList.remove('filled', 'half-filled');
       if (index < Math.floor(clampedRating)) {
@@ -143,155 +104,9 @@ class RushGameCard extends HTMLElement {
         star.classList.add('half-filled');
       }
     });
-    if (this.gameRating) {
-      const ratingText = `Calificación: ${clampedRating} de 5 estrellas`;
-      this.gameRating.setAttribute('aria-label', ratingText);
-    }
   }
 
-  updateFavoriteState(isFavorited) {
-    this.gameData.isFavorited = isFavorited;
-    if (!this.favoriteBtn) return;
-    if (isFavorited) {
-      this.favoriteBtn.classList.add('favorited');
-      this.favoriteBtn.setAttribute('aria-label', 'Quitar de favoritos');
-    } else {
-      this.favoriteBtn.classList.remove('favorited');
-      this.favoriteBtn.setAttribute('aria-label', 'Agregar a favoritos');
-    }
-  }
-
-  updatePlayingState(isPlaying) {
-    this.gameData.isPlaying = isPlaying;
-    if (!this.playBtn) return;
-    if (isPlaying) {
-      this.playBtn.textContent = 'Jugando...';
-      this.playBtn.disabled = true;
-      this.card.classList.add('playing');
-    } else {
-      this.playBtn.textContent = 'Play';
-      this.playBtn.disabled = false;
-      this.card.classList.remove('playing');
-    }
-  }
-
-  setPlaceholderImage() {
-    const canvas = document.createElement('canvas');
-    canvas.width = 320;
-    canvas.height = 200;
-    const ctx = canvas.getContext('2d');
-
-    const gradient = ctx.createLinearGradient(0, 0, 320, 200);
-    gradient.addColorStop(0, '#14171B');
-    gradient.addColorStop(1, '#1A1F24');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 320, 200);
-
-    ctx.fillStyle = '#7ED321';
-    ctx.font = '48px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('🎮', 160, 120);
-
-    this.gameImage.src = canvas.toDataURL();
-    this.gameImage.alt = 'Imagen del juego no disponible';
-  }
-
-  handleImageError() {
-    console.log('Image failed to load, using placeholder');
-    this.setPlaceholderImage();
-  }
-
-  handleCardClick() {
-    this.dispatchEvent(
-      new CustomEvent('gameCardClicked', {
-        detail: {
-          gameId: this.gameData.id,
-          gameData: this.gameData,
-        },
-        bubbles: true,
-      })
-    );
-
-    console.log('Game card clicked:', this.gameData.id);
-  }
-
-  handlePlayClick() {
-    if (this.gameData.isPlaying) return;
-
-    this.playBtn.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      this.playBtn.style.transform = '';
-    }, 150);
-
-    this.dispatchEvent(
-      new CustomEvent('gamePlayClicked', {
-        detail: {
-          gameId: this.gameData.id,
-          gameData: this.gameData,
-        },
-        bubbles: true,
-      })
-    );
-
-    console.log('Play clicked:', this.gameData.id);
-  }
-
-  handleFavoriteClick() {
-    const newFavoriteState = !this.gameData.isFavorited;
-    this.updateFavoriteState(newFavoriteState);
-
-    this.favoriteBtn.style.transform = 'scale(0.8)';
-    setTimeout(() => {
-      this.favoriteBtn.style.transform = '';
-    }, 200);
-
-    this.dispatchEvent(
-      new CustomEvent('gameFavoriteToggled', {
-        detail: {
-          gameId: this.gameData.id,
-          isFavorited: newFavoriteState,
-          gameData: this.gameData,
-        },
-        bubbles: true,
-      })
-    );
-
-    console.log('Favorite toggled:', this.gameData.id, newFavoriteState);
-  }
-
-  setVariant(variant) {
-    this.card.classList.remove('compact', 'featured');
-
-    if (variant) {
-      this.card.classList.add(variant);
-    }
-  }
-
-  setLoading(isLoading) {
-    if (isLoading) {
-      this.card.classList.add('loading');
-    } else {
-      this.card.classList.remove('loading');
-    }
-  }
-
-  renderErrorState() {
-    this.shadowRoot.innerHTML = `
-            <style>
-                .error-card {
-                    background: var(--neutral-surface-variant);
-                    border: 1px solid var(--neutral-border);
-                    border-radius: 12px;
-                    padding: 2rem;
-                    text-align: center;
-                    color: var(--text-secondary);
-                }
-            </style>
-            <div class="error-card">
-                <p>Error al cargar el componente de juego</p>
-            </div>
-        `;
-  }
+  handleClick() {}
 
   connectedCallback() {
     this.setAttribute('tabindex', '0');
@@ -303,7 +118,7 @@ class RushGameCard extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['game-id', 'title', 'image', 'description', 'variant', 'favorited'];
+    return ['game-id', 'title', 'image', 'rating'];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -319,14 +134,8 @@ class RushGameCard extends HTMLElement {
       case 'image':
         this.gameData.image = newValue || '';
         break;
-      case 'description':
-        this.gameData.description = newValue || 'Descripción del juego...';
-        break;
-      case 'variant':
-        this.setVariant(newValue);
-        return;
-      case 'favorited':
-        this.gameData.isFavorited = newValue === 'true';
+      case 'rating':
+        this.gameData.rating = parseFloat(newValue) || 0;
         break;
     }
     this.updateDisplay();

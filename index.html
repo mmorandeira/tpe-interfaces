@@ -2,22 +2,64 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RUSHgames</title>
     <link rel="stylesheet" href="./main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!--with auto-start we call the method of the component attributeChangedCallback-->
-    <rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>
+    <!--<rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>-->
 
-    <my-navbar></my-navbar>
+    <rushgame-navbar></rushgame-navbar>
 
     <div style="padding: 50px; color: white; background: #222">
       <h1>Bienvenido a mi página</h1>
       <p>Este es un ejemplo con Web Components.</p>
-    </div>
 
+      <!-- Game Cards Section THIS IS ONLY FOR TEST-->
+      <div style="margin-top: 40px">
+        <h2 style="margin-bottom: 20px">Juegos Destacados</h2>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center">
+          <rush-game-card
+            id="game1"
+            title="Adventure Quest"
+            image="https://via.placeholder.com/243x369/4CAF50/white?text=Adventure+Quest"
+            rating="1.5"
+            category="Adventure"
+          >
+          </rush-game-card>
+
+          <rush-game-card
+            id="game2"
+            title="Space Fighter"
+            image="https://via.placeholder.com/243x369/2196F3/white?text=Space+Fighter"
+            rating="5"
+            category="Action"
+          >
+          </rush-game-card>
+
+          <rush-game-card
+            id="game3"
+            title="Puzzle Master"
+            image="https://via.placeholder.com/243x369/FF9800/white?text=Puzzle+Master"
+            rating="3"
+            category="Puzzle"
+          >
+          </rush-game-card>
+        </div>
+      </div>
+    </div>
+    <rushgame-footer></rushgame-footer>
     <!-- Component imports -->
     <script src="./components/navbar/navbar.js"></script>
     <script src="./components/loading/loading.js"></script>
+    <script src="./components/game-card/game_card.js"></script>
+    <script src="./components/footer/footer.js"></script>
   </body>
 </html>

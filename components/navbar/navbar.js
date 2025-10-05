@@ -3,6 +3,14 @@ class MyNavbar extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
 
+    this.navbarData = {
+      isLoggedIn: false,
+    };
+
+    this.init();
+  }
+
+  async init() {
     Promise.all([
       fetch('./components/navbar/navbar.html').then((res) => res.text()),
       fetch('./components/navbar/navbar.css').then((res) => res.text()),
@@ -19,79 +27,120 @@ class MyNavbar extends HTMLElement {
       this.shadowRoot.appendChild(content);
 
       this.setupEventListeners();
+      this.updateUI(); // Inicializar el estado de la UI
+
+      window.addEventListener('resize', () => {
+        this.updateUI();
+      });
     });
   }
 
   setupEventListeners() {
     const hamburger = this.shadowRoot.querySelector('#hamburger');
     const mobileMenu = this.shadowRoot.querySelector('#mobile-menu');
-    const searchInput = this.shadowRoot.querySelector('.search-input');
-    const searchButton = this.shadowRoot.querySelector('.search-button');
-
+    const mobileLoginButton = this.shadowRoot.querySelector('.mobile-login-button');
+    const loginButton = this.shadowRoot.querySelector('.login-button');
+    const mobileLogoutButton = this.shadowRoot.querySelector('.mobile-logout-button');
+    const mobileLoginBtn = this.shadowRoot.querySelector('.mobile-login-btn');
     // Toggle mobile menu
     hamburger?.addEventListener('click', () => {
       mobileMenu?.classList.toggle('active');
-      this.toggleHamburgerAnimation(hamburger);
-    });
-
-    // Search functionality
-    searchButton?.addEventListener('click', () => {
-      this.handleSearch(searchInput?.value);
-    });
-
-    searchInput?.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        this.handleSearch(searchInput.value);
-      }
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!this.contains(e.target)) {
         mobileMenu?.classList.remove('active');
-        this.resetHamburgerAnimation(hamburger);
+      }
+    });
+
+    // Login buttons
+    mobileLoginButton?.addEventListener('click', () => {
+      this.handleLogin();
+    });
+
+    loginButton?.addEventListener('click', () => {
+      this.handleLogin();
+    });
+
+    mobileLoginBtn?.addEventListener('click', () => {
+      this.handleLogin();
+    });
+
+    // logout button
+    mobileLogoutButton?.addEventListener('click', () => {
+      this.handleLogin();
+    });
+  }
+
+  handleLogin() {
+    this.isLoggedIn = !this.navbarData.isLoggedIn;
+  }
+
+  get isLoggedIn() {
+    return this.navbarData.isLoggedIn;
+  }
+
+  set isLoggedIn(value) {
+    this.navbarData.isLoggedIn = value;
+    this.updateUI();
+  }
+
+  updateUI() {
+    const elements = this.getUIElements();
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    if (this.navbarData.isLoggedIn) {
+      this.hideElements(elements.loggedOut, isMobile);
+      this.showElements(elements.loggedIn, isMobile);
+    } else {
+      this.hideElements(elements.loggedIn, isMobile);
+      this.showElements(elements.loggedOut, isMobile);
+    }
+  }
+
+  getUIElements() {
+    return {
+      loggedIn: {
+        desktop: [
+          this.shadowRoot.querySelector('.navbar-right-logged-in'),
+          this.shadowRoot.querySelector('.mobile-logout-button'),
+        ],
+        mobile: [
+          this.shadowRoot.querySelector('.mobile-navbar-right-logged-in'),
+          this.shadowRoot.querySelector('.mobile-logout-button'),
+        ],
+      },
+      loggedOut: {
+        desktop: [
+          this.shadowRoot.querySelector('.navbar-right-logged-out'),
+          this.shadowRoot.querySelector('.mobile-login-button'),
+        ],
+        mobile: [
+          this.shadowRoot.querySelector('.mobile-navbar-right-logged-out'),
+          this.shadowRoot.querySelector('.mobile-login-button'),
+        ],
+      },
+    };
+  }
+
+  hideElements(elements, isMobile) {
+    const elementsToHide = isMobile ? elements.mobile : elements.desktop;
+    elementsToHide.forEach((element) => {
+      if (element) {
+        element.style.display = 'none';
       }
     });
   }
 
-  toggleHamburgerAnimation(hamburger) {
-    const spans = hamburger.querySelectorAll('span');
-    if (hamburger.classList.contains('active')) {
-      hamburger.classList.remove('active');
-      spans[0].style.transform = 'rotate(0deg) translateY(0px)';
-      spans[1].style.opacity = '1';
-      spans[2].style.transform = 'rotate(0deg) translateY(0px)';
-    } else {
-      hamburger.classList.add('active');
-      spans[0].style.transform = 'rotate(45deg) translateY(6px)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'rotate(-45deg) translateY(-6px)';
-    }
-  }
-
-  resetHamburgerAnimation(hamburger) {
-    if (hamburger) {
-      hamburger.classList.remove('active');
-      const spans = hamburger.querySelectorAll('span');
-      spans[0].style.transform = 'rotate(0deg) translateY(0px)';
-      spans[1].style.opacity = '1';
-      spans[2].style.transform = 'rotate(0deg) translateY(0px)';
-    }
-  }
-
-  handleSearch(query) {
-    if (query && query.trim()) {
-      console.log('Searching for:', query);
-      // Aquí puedes agregar la lógica de búsqueda real
-      // Por ejemplo, emitir un evento personalizado
-      this.dispatchEvent(
-        new CustomEvent('search', {
-          detail: { query: query.trim() },
-          bubbles: true,
-        })
-      );
-    }
+  showElements(elements, isMobile) {
+    const elementsToShow = isMobile ? elements.mobile : elements.desktop;
+    elementsToShow.forEach((element) => {
+      if (element) {
+        element.style.display = 'flex';
+      }
+    });
   }
 }
 
-customElements.define('my-navbar', MyNavbar);
+customElements.define('rushgame-navbar', MyNavbar);
