@@ -53,7 +53,6 @@ class CommentSection extends HTMLElement {
         item.setAttribute('when', c.when);
         item.setAttribute('body', c.body);
         if (c.avatar) item.setAttribute('avatar', c.avatar);
-        item.replies = c.replies || [];
 
         // ⬇️ alta de reply
         item.addEventListener('reply:add', (ev) => {
@@ -81,6 +80,14 @@ class CommentSection extends HTMLElement {
       }
 
       list.appendChild(frag);
+      for (const c of comments) {
+        const el = list.querySelector(`li[data-id="${c.id}"] comment-item`);
+        const replies = c.replies || [];
+        customElements
+          .whenDefined('comment-item')
+          .then(() => el?.ready) // usamos la promesa `ready` del item
+          .then(() => el?.setReplies(replies));
+      }
 
       // reabrir hilos que el usuario tenía abiertos
       for (const id of openIds) {

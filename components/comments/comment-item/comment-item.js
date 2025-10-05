@@ -7,6 +7,7 @@ class CommentItem extends HTMLElement {
   }
 
   async connectedCallback() {
+    const _earlyReplies = this.hasOwnProperty('replies') ? this.replies : undefined;
     const [html, css] = await Promise.all([
       fetch('./components/comments/comment-item/comment-item.html').then((r) => r.text()),
       fetch('./components/comments/comment-item/comment-item.css').then((r) => r.text()),
@@ -91,6 +92,9 @@ class CommentItem extends HTMLElement {
     });
 
     this._updateSecondaryLabel(false);
+    if (_earlyReplies !== undefined) {
+      this.replies = _earlyReplies;
+    }
     this._resolveReady?.();
   }
 
