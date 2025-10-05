@@ -1,92 +1,156 @@
 <template id="footer-template">
-    <!-- Top color bar -->
-    <div class="top-color-bar">
-        <div class="bar-half bar-white"></div>
-        <div class="bar-half bar-primary"></div>
+  <!-- Top color bar -->
+  <div class="top-color-bar">
+    <div class="bar-half bar-white"></div>
+    <div class="bar-half bar-primary"></div>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Logo section -->
+      <div class="footer-logo-section">
+        <div class="footer-logo">RUSH<span>games</span></div>
+      </div>
+
+      <!-- Links sections container -->
+      <div class="footer-content-sections">
+        <!-- Sobre nosotros section -->
+        <div class="footer-links-group">
+          <h3 class="footer-section-title">Sobre nosotros</h3>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Política de privacidad</a></li>
+            <li><a href="#" class="footer-link">Términos de uso</a></li>
+            <li><a href="#" class="footer-link">Compañía</a></li>
+            <li><a href="#" class="footer-link">Negocio</a></li>
+            <li><a href="#" class="footer-link">Seguridad y Confianza</a></li>
+            <li><a href="#" class="footer-link">¿Quienes somos?</a></li>
+          </ul>
+        </div>
+
+        <!-- Seguinos section -->
+        <div class="footer-seguinos">
+          <h3 class="footer-section-title">Seguinos</h3>
+          <div class="footer-social-icons">
+            <a href="#" class="footer-social-icon instagram">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="2"
+                  y="2"
+                  width="20"
+                  height="20"
+                  rx="5"
+                  ry="5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <line
+                  x1="17.5"
+                  y1="6.5"
+                  x2="17.51"
+                  y2="6.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+            </a>
+            <a href="#" class="footer-social-icon facebook">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+            </a>
+            <a href="#" class="footer-social-icon youtube">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.24c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+                <polygon
+                  points="9.75,15.02 15.5,11.75 9.75,8.48"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+            </a>
+            <a href="#" class="footer-social-icon twitter">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links section -->
+        <div class="footer-links-group">
+          <h3 class="footer-section-title">Links</h3>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Soporte</a></li>
+            <li><a href="#" class="footer-link">Consultas</a></li>
+            <li><a href="#" class="footer-link">Blogs</a></li>
+            <li><a href="#" class="footer-link">Desarrolladores y API</a></li>
+            <li><a href="#" class="footer-link">Accesibilidad</a></li>
+            <li><a href="#" class="footer-link">Eventos</a></li>
+            <li><a href="#" class="footer-link">Directorio</a></li>
+            <li><a href="#" class="footer-link">Otras páginas</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact section -->
+        <div class="footer-contact-section">
+          <h3 class="footer-section-title">Contactanos</h3>
+          <div class="contact-phone">1-800-516-333</div>
+          <button class="configuration-btn">Configuración</button>
+          <span class="config-subtitle">Configuración avanzada del sitio</span>
+        </div>
+      </div>
     </div>
-    <footer class="footer">
-        <div class="footer-container">
-            <!-- Logo section -->
-            <div class="footer-logo-section">
-                <div class="footer-logo">RUSH<span>games</span></div>
-            </div>
-            
-            <!-- Links sections container -->
-            <div class="footer-content-sections">
-                <!-- Sobre nosotros section -->
-                <div class="footer-links-group">
-                    <h3 class="footer-section-title">Sobre nosotros</h3>
-                    <ul class="footer-links-list">
-                        <li><a href="#" class="footer-link">Política de privacidad</a></li>
-                        <li><a href="#" class="footer-link">Términos de uso</a></li>
-                        <li><a href="#" class="footer-link">Compañía</a></li>
-                        <li><a href="#" class="footer-link">Negocio</a></li>
-                        <li><a href="#" class="footer-link">Seguridad y Confianza</a></li>
-                        <li><a href="#" class="footer-link">¿Quienes somos?</a></li>
-                    </ul>
-                </div>
 
-                <!-- Seguinos section -->
-                <div class="footer-seguinos">
-                    <h3 class="footer-section-title">Seguinos</h3>
-                    <div class="footer-social-icons">
-                        <a href="#" class="footer-social-icon instagram">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="footer-social-icon facebook">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="footer-social-icon youtube">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.24c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <polygon points="9.75,15.02 15.5,11.75 9.75,8.48" stroke="currentColor" stroke-width="2" fill="none"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="footer-social-icon twitter">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Links section -->
-                <div class="footer-links-group">
-                    <h3 class="footer-section-title">Links</h3>
-                    <ul class="footer-links-list">
-                        <li><a href="#" class="footer-link">Soporte</a></li>
-                        <li><a href="#" class="footer-link">Consultas</a></li>
-                        <li><a href="#" class="footer-link">Blogs</a></li>
-                        <li><a href="#" class="footer-link">Desarrolladores y API</a></li>
-                        <li><a href="#" class="footer-link">Accesibilidad</a></li>
-                        <li><a href="#" class="footer-link">Eventos</a></li>
-                        <li><a href="#" class="footer-link">Directorio</a></li>
-                        <li><a href="#" class="footer-link">Otras páginas</a></li>
-                        <li><a href="#" class="footer-link">FAQ</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact section -->
-                <div class="footer-contact-section">
-                    <h3 class="footer-section-title">Contactanos</h3>
-                    <div class="contact-phone">1-800-516-333</div>
-                    <button class="configuration-btn">
-                        Configuración
-                    </button>
-                    <span class="config-subtitle">Configuración avanzada del sitio</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer bottom -->
-        <div class="footer-bottom">
-            <p class="footer-copyright">Todos los derechos reservados © 2025 RUSH<span class="footer-brand">games</span></p>
-        </div>
-    </footer>
+    <!-- Footer bottom -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        Todos los derechos reservados © 2025 RUSH<span class="footer-brand">games</span>
+      </p>
+    </div>
+  </footer>
 </template>
