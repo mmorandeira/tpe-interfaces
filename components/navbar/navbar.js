@@ -1,4 +1,4 @@
-class MyNavbar extends HTMLElement {
+class RushGameNavbar extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -143,4 +143,4 @@ class MyNavbar extends HTMLElement {
   }
 }
 
-customElements.define('rushgame-navbar', MyNavbar);
+customElements.define('rushgame-navbar', RushGameNavbar);

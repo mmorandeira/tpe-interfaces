@@ -1,4 +1,4 @@
-class MyFooter extends HTMLElement {
+class RushGameFooter extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -25,4 +25,4 @@ class MyFooter extends HTMLElement {
   }
 }
 
-customElements.define('rushgame-footer', MyFooter);
+customElements.define('rushgame-footer', RushGameFooter);
