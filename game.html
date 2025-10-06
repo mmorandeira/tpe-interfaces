@@ -3,21 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <title>Web Component Navbar</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Uso directo del componente -->
-    <my-navbar></my-navbar>
+    <rushgame-navbar></rushgame-navbar>
 
-    <div style="padding: 50px; color: white; background: #222">
-      <h1>página del juego</h1>
-      <p>Este es un ejemplo con Web Components.</p>
-    </div>
+    <main id="game-page">
+      <!-- Breadcrumb -->
 
-    <comment-section></comment-section>
+      <rush-breadcrumb id="gameBreadcrumb"></rush-breadcrumb>
+
+      <rush-game-instructions></rush-game-instructions>
+
+      <comment-section></comment-section>
+    </main>
+
+    <!-- Footer -->
+    <rushgame-footer></rushgame-footer>
 
     <script src="./components/navbar/navbar.js" defer></script>
-
-    <script src="./components/comments/services/comment-store.js" defer></script>
+    <script src="./components/breadcrumb/breadcrumb.js" defer></script>
+    <script src="./components/game-instructions/game_instructions.js" defer></script>
 
     <script src="./components/comments/reply-row/reply-row.js" defer></script>
     <script src="./components/comments/action-row/action-row.js" defer></script>
