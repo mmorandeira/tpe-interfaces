@@ -1,0 +1,300 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Carrousel Container */
+.carrousel-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Carrousel header Styles */
+.carrousel-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.carrousel-title {
+  color: var(--text-primary);
+  font-style: var(--text-title);
+  margin: 0;
+}
+
+.carrousel-nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.carrousel-line {
+  width: 100%;
+  height: 2px;
+  background: var(--rushgames-primary);
+  border-radius: 1px;
+  margin: 0;
+}
+
+/* Carrousel viewport y track para las cards */
+.carrousel-viewport {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  position: relative;
+}
+
+.carrousel-nav {
+  background: var(--neutral-surface, #1a1a1a);
+  border: 2px solid var(--neutral-border, #333);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+.carrousel-nav:hover {
+  background: var(--rushgames-primary);
+  border-color: var(--rushgames-primary);
+  transform: scale(1.1);
+}
+
+.carrousel-nav:active {
+  transform: scale(0.95);
+}
+
+.carrousel-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.carrousel-nav:disabled:hover {
+  background: var(--neutral-surface);
+  border-color: var(--neutral-border);
+  transform: none;
+}
+
+.carrousel-nav svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.carrousel-nav:hover svg {
+  transform: scale(1.2);
+}
+
+.carrousel-track {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+  padding: 0.5rem;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+
+/* Ensure slotted elements display inline */
+::slotted(*) {
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  vertical-align: top !important;
+}
+
+/* Force horizontal layout for game cards specifically */
+::slotted(rushgame-card) {
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  width: 243px !important;
+  min-width: 243px !important;
+  max-width: 243px !important;
+}
+
+.carrousel-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neutral-border, #333);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+}
+
+.carrousel-indicator.active {
+  background: var(--rushgames-primary, #ff6b35);
+  transform: scale(1.5);
+}
+
+.carrousel-indicator:hover {
+  background: var(--rushgames-primary, #ff6b35);
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carrousel-container {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .carrousel-header {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .carrousel-nav {
+    width: 40px;
+    height: 40px;
+    display: flex; /* Ensure buttons are visible on tablets */
+  }
+
+  .carrousel-nav svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .carrousel-viewport {
+    overflow: hidden; /* Keep hidden for transform-based navigation */
+  }
+
+  .carrousel-track {
+    gap: 1rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Ensure transform-based navigation works on tablets */
+  }
+
+  ::slotted(rushgame-card) {
+    width: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .carrousel-container {
+    padding: 0.5rem 0;
+    gap: 1rem;
+  }
+
+  .carrousel-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    padding: 0 1rem;
+  }
+
+  .carrousel-title {
+    font-size: 1.25rem;
+  }
+
+  .carrousel-nav {
+    display: none; /* Hide navigation buttons only on mobile */
+  }
+
+  .carrousel-viewport {
+    touch-action: pan-x;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carrousel-track {
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    transition: none;
+    transform: none !important;
+  }
+
+  .carrousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carrousel-track > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  ::slotted(rushgame-card) {
+    width: 180px !important;
+    min-width: 180px !important;
+    max-width: 180px !important;
+  }
+}
+
+/* Animation classes */
+.carrousel-track.transitioning {
+  pointer-events: none;
+}
+
+/* Custom variables for theming */
+:host {
+  --carrousel-gap: 1.5rem;
+  --carrousel-nav-size: 48px;
+  --carrousel-border-radius: 16px;
+  --carrousel-transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Focus styles for accessibility */
+.carrousel-nav:focus-visible {
+  outline: 2px solid var(--rushgames-primary);
+  outline-offset: 2px;
+}
+
+.carrousel-indicator:focus-visible {
+  outline: 2px solid var(--rushgames-primary);
+  outline-offset: 2px;
+}
+
+/* Loading state */
+.carrousel-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  color: var(--text-secondary);
+}
+
+/* Empty state */
+.carrousel-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  color: var(--text-secondary);
+  text-align: center;
+  gap: 1rem;
+}
+
+.carrousel-empty-icon {
+  width: 64px;
+  height: 64px;
+  opacity: 0.5;
+}

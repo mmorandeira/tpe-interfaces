@@ -1,0 +1,52 @@
+<template id="carrousel-template">
+  <div class="carrousel-container">
+    <div class="carrousel-header">
+      <h2 class="carrousel-title"></h2>
+
+      <div class="carrousel-nav-buttons">
+        <button
+          class="carrousel-nav carrousel-nav-prev"
+          id="prevBtn"
+          aria-label="Anterior"
+          title="Ir al juego anterior"
+        >
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        <button
+          class="carrousel-nav carrousel-nav-next"
+          id="nextBtn"
+          aria-label="Siguiente"
+          title="Ir al siguiente juego"
+        >
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="carrousel-line"></div>
+
+    <div class="carrousel-viewport">
+      <div class="carrousel-track" id="carrouselTrack">
+        <!-- Game cards will be inserted here -->
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template>

@@ -17,46 +17,73 @@
     <!--<rush-loading id="mainLoader" auto-start duration="5000"></rush-loading>-->
 
     <rushgame-navbar></rushgame-navbar>
+    <!-- Carrousel Section THIS IS ONLY FOR TEST-->
+    <rushgame-carrousel title="Recomendados para ti">
+      <rushgame-card
+        id="game1"
+        title="Adventure Quest"
+        image="../../assets/PegSolitare.jpg"
+        rating="1.5"
+        category="Adventure"
+      >
+      </rushgame-card>
 
-    <div style="padding: 50px; color: white; background: #222">
-      <h1>Bienvenido a mi página</h1>
-      <p>Este es un ejemplo con Web Components.</p>
+      <rushgame-card
+        id="game2"
+        title="Space Fighter"
+        image="../../assets/Game-1.jpg"
+        rating="5"
+        category="Action"
+      >
+      </rushgame-card>
 
-      <!-- Game Cards Section THIS IS ONLY FOR TEST-->
-      <div style="margin-top: 40px">
-        <h2 style="margin-bottom: 20px">Juegos Destacados</h2>
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center">
-          <rush-game-card
-            id="game1"
-            title="Adventure Quest"
-            image="https://via.placeholder.com/243x369/4CAF50/white?text=Adventure+Quest"
-            rating="1.5"
-            category="Adventure"
-          >
-          </rush-game-card>
+      <rushgame-card
+        id="game3"
+        title="Puzzle Master"
+        image="../../assets/Game-2.jpg"
+        rating="3"
+        category="Puzzle"
+      >
+      </rushgame-card>
 
-          <rush-game-card
-            id="game2"
-            title="Space Fighter"
-            image="https://via.placeholder.com/243x369/2196F3/white?text=Space+Fighter"
-            rating="5"
-            category="Action"
-          >
-          </rush-game-card>
+      <rushgame-card
+        id="game4"
+        title="Mystery Island"
+        image="../../assets/Game-3.jpg"
+        rating="4.5"
+        category="Mystery"
+      >
+      </rushgame-card>
 
-          <rush-game-card
-            id="game3"
-            title="Puzzle Master"
-            image="https://via.placeholder.com/243x369/FF9800/white?text=Puzzle+Master"
-            rating="3"
-            category="Puzzle"
-          >
-          </rush-game-card>
-        </div>
-      </div>
-    </div>
+      <rushgame-card
+        id="game5"
+        title="Racing Thunder"
+        image="../../assets/Game-4.webp"
+        rating="2.5"
+        category="Racing"
+      >
+      </rushgame-card>
+      <rushgame-card
+        id="game1"
+        title="Adventure Quest"
+        image="../../assets/Game-1.jpg"
+        rating="1.5"
+        category="Adventure"
+      >
+      </rushgame-card>
+      <rushgame-card
+        id="game1"
+        title="Adventure Quest"
+        image="../../assets/Game-2.jpg"
+        rating="1.5"
+        category="Adventure"
+      >
+      </rushgame-card>
+    </rushgame-carrousel>
+
     <rushgame-footer></rushgame-footer>
     <!-- Component imports -->
+    <script src="./components/carrousel/carrousel.js"></script>
     <script src="./components/navbar/navbar.js"></script>
     <script src="./components/loading/loading.js"></script>
     <script src="./components/game-card/game_card.js"></script>
