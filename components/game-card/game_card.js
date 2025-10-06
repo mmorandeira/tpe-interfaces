@@ -81,7 +81,7 @@ class RushGameCard extends HTMLElement {
   handleResize() {
     // Add responsive behavior if needed
     const width = this.offsetWidth;
-    
+
     // Adjust title truncation based on available width
     if (width < 180) {
       this.updateTitleTruncation(8);
@@ -94,7 +94,7 @@ class RushGameCard extends HTMLElement {
 
   updateTitleTruncation(maxLength) {
     if (!this.gameTitle) return;
-    
+
     let title = this.gameData.title;
     if (title.length > maxLength) {
       title = title.slice(0, maxLength - 3) + '...';

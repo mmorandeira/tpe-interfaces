@@ -10,28 +10,27 @@ class RushGameCarrousel extends HTMLElement {
     this.originalCardsToShow = this.cardsToShow; // Store original value
 
     // Carousel state variables
-    this.currentIndex = 0;      // Current index of the first visible card
-    this.totalCards = 0;        // Total number of cards in the carousel
-    this.maxIndex = 0;          // Maximum index to which you can navigate
+    this.currentIndex = 0; // Current index of the first visible card
+    this.totalCards = 0; // Total number of cards in the carousel
+    this.maxIndex = 0; // Maximum index to which you can navigate
     this.isTransitioning = false; // Flag to prevent multiple simultaneous transitions
-    this.isMobile = false;      // Flag to track if we're on mobile
-    this.isTablet = false;      // Flag to track if we're on tablet
+    this.isMobile = false; // Flag to track if we're on mobile
+    this.isTablet = false; // Flag to track if we're on tablet
   }
-
 
   async init() {
     try {
       // Initialize the component by loading HTML and CSS, and setting up events
       const [html, css] = await Promise.all([
-        fetch('./components/carrousel/carrousel.html').then(res => res.text()),
-        fetch('./components/carrousel/carrousel.css').then(res => res.text())
+        fetch('./components/carrousel/carrousel.html').then((res) => res.text()),
+        fetch('./components/carrousel/carrousel.css').then((res) => res.text()),
       ]);
 
       // Parse the HTML to extract only the template content
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       const templateElement = doc.querySelector('#carrousel-template');
-      
+
       if (!templateElement) {
         throw new Error('Template not found in HTML file');
       }
@@ -138,11 +137,11 @@ class RushGameCarrousel extends HTMLElement {
     const width = window.innerWidth;
     const wasMobile = this.isMobile;
     const wasTablet = this.isTablet;
-    
+
     // Determine device type
     this.isMobile = width <= 480;
     this.isTablet = width > 480 && width <= 768;
-    
+
     // Auto-adjust cards to show based on screen size
     if (this.isMobile) {
       // On mobile, show 1-2 cards depending on device width
@@ -193,14 +192,13 @@ class RushGameCarrousel extends HTMLElement {
     this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
   }
 
-
   updateTrackPosition() {
     /**
      * Updates the position of the track using transform translateX
      * This function moves the cards horizontally
      * On mobile devices, we rely on native scroll instead
      */
-    
+
     // Do not update if a transition is in progress
     if (this.isTransitioning) return;
 
@@ -246,10 +244,10 @@ class RushGameCarrousel extends HTMLElement {
   goToNext() {
     // Only on mobile (≤480px), navigation buttons are hidden
     if (this.isMobile) return;
-    
+
     // Do not do anything if a transition is in progress
     if (this.isTransitioning) return;
-    
+
     // Do not go beyond the maximum index
     this.currentIndex = Math.min(this.currentIndex + 1, this.maxIndex);
 
@@ -260,7 +258,7 @@ class RushGameCarrousel extends HTMLElement {
   goToPrevious() {
     // Only on mobile (≤480px), navigation buttons are hidden
     if (this.isMobile) return;
-    
+
     // Do not do anything if a transition is in progress
     if (this.isTransitioning) return;
 
@@ -275,7 +273,7 @@ class RushGameCarrousel extends HTMLElement {
     // FIRST: Update track position and button states BEFORE setting transition flag
     this.updateTrackPosition();
     this.updateNavigationButtons();
-    
+
     // THEN: Set the transitioning flag and add CSS class for transition
     this.isTransitioning = true;
     this.track.classList.add('transitioning');
@@ -300,7 +298,7 @@ class RushGameCarrousel extends HTMLElement {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }
-    
+
     // Clean up resize timeout
     if (this.resizeTimeout) {
       clearTimeout(this.resizeTimeout);
@@ -317,12 +315,13 @@ class RushGameCarrousel extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     // dont do anything if the value hasn't changed
     if (oldValue === newValue) return;
-    
+
     switch (name) {
       case 'cards-to-show':
         // Update the number of cards to show and recalculate the carousel
         this.cardsToShow = parseInt(newValue) || 4;
-        if (this.shadowRoot) { // Only update if component is initialized
+        if (this.shadowRoot) {
+          // Only update if component is initialized
           this.updateCarrousel();
         }
         break;
