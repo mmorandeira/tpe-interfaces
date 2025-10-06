@@ -55,6 +55,7 @@
             
         </div>
          <rush-auth-form default-tab="register"></rush-auth-form>
+         <rush-game-instructions></rush-game-instructions>
           <rush-footer></rush-footer>
         <!-- Component imports -->
         <script src="./components/navbar/navbar.js"></script>
@@ -63,6 +64,7 @@
         <script src="./components/auth-form/auth-form.js"></script>
         <script src="./components/category-carousel/category_carousel.js"></script>
         <script src="./components/breadcrumb/breadcrumb.js"></script>
+        <script src="./components/game-instructions/game_instructions.js"></script>
         <script src="./components/footer/footer.js"></script>
         <script>
             // Espera a que el componente esté en el DOM
@@ -76,6 +78,22 @@
             }, 100);
   
         </script>
+        <script>
+    setTimeout(() => {
+        const instructions = [
+            { type: 'mouse', text: 'Haz clic izquierdo para seleccionar o interactuar.' },
+            { type: 'move', text: 'Selecciona una ficha y movela a un espacio vacio' },
+            { type: 'jump', text: 'Salta sobre una ficha para eliminarla.' },
+            { type: 'objective', text: 'El objetivo del juego es dejar una sola ficha en el tablero.' },
+            { type: 'coins', text: 'Podes usar tus RushCoins para deshacer una jugada.' }
+        ];
+        const gameInstructions = document.querySelector('rush-game-instructions');
+        if (gameInstructions) {
+            gameInstructions.setTitle('¿Cómo jugar?');
+            gameInstructions.setInstructions(instructions);
+        }
+    }, 100);
+</script>
 
     </body>
 </html>
