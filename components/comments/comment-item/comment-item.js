@@ -7,6 +7,7 @@ class CommentItem extends HTMLElement {
   }
 
   async connectedCallback() {
+    const _earlyReplies = this.hasOwnProperty('replies') ? this.replies : undefined;
     const [html, css] = await Promise.all([
       fetch('./components/comments/comment-item/comment-item.html').then((r) => r.text()),
       fetch('./components/comments/comment-item/comment-item.css').then((r) => r.text()),
@@ -69,7 +70,7 @@ class CommentItem extends HTMLElement {
     // botones: Responder / Ver respuestas (toggle)
     this._actions.addEventListener('action:primary', () => {
       this.openThread();
-      this._thread.focusInput();
+      this._thread.startCompose();
     });
     this._actions.addEventListener('action:secondary', () => {
       if (this._thread._open) {
@@ -88,25 +89,30 @@ class CommentItem extends HTMLElement {
       this.dispatchEvent(
         new CustomEvent('reply:add', { detail: { text: ev.detail.text }, bubbles: true })
       );
+      this._thread.stopCompose({ clear: true }); // opcional
     });
-
-    this._actions.addEventListener('action:secondary', () => {
-      this._thread.toggle();
-      const isOpen = this._thread._open;
-      this._updateSecondaryLabel(isOpen);
-      this.dispatchEvent(
-        new CustomEvent(isOpen ? 'thread:open' : 'thread:close', { bubbles: true })
-      );
+    this._thread.addEventListener('thread:state', (ev) => {
+      this._updateSecondaryLabel(Boolean(ev.detail?.open));
     });
 
     this._updateSecondaryLabel(false);
+    if (_earlyReplies !== undefined) {
+      this.replies = _earlyReplies;
+    }
     this._resolveReady?.();
   }
 
-  _updateSecondaryLabel(open) {
-    const hasReplies = (this._thread?.replies?.length || 0) > 0;
-    const label = open ? 'Ocultar respuestas' : hasReplies ? 'Ver respuestas' : 'Ver respuestas';
+  _updateSecondaryLabel(open = this._thread?._open ?? false) {
+    const n = this._thread?.replies?.length ?? 0;
+    const hasReplies = n > 0;
+    const label = open
+      ? 'Ocultar respuestas'
+      : hasReplies
+        ? `Ver respuestas (${n})`
+        : 'Ver respuestas';
     this._actions?.setAttribute('secondary-label', label);
+    // ocultá el botón si no hay replies y está cerrado
+    this._actions?.toggleAttribute('hide-secondary', !open && !hasReplies);
   }
 
   disconnectedCallback() {

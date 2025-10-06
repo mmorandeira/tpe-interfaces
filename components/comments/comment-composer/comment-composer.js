@@ -58,8 +58,13 @@ class CommentComposer extends HTMLElement {
       this.reset();
     });
     cancel.addEventListener('click', () => {
-      this.dispatchEvent(new CustomEvent('comment:cancel', { bubbles: true }));
-      this.reset();
+      text.value = '';
+      // si tenés un auto-resize, asegurate de recalcular altura:
+      autoResize();
+      // deshabilitar el botón "Comentar"
+      send.disabled = true;
+      // (opcional) blur para cerrar el “estado activo”
+      text.blur();
     });
 
     // API pública
