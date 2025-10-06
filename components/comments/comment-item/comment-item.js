@@ -70,7 +70,7 @@ class CommentItem extends HTMLElement {
     // botones: Responder / Ver respuestas (toggle)
     this._actions.addEventListener('action:primary', () => {
       this.openThread();
-      this._thread.focusInput();
+      this._thread.startCompose();
     });
     this._actions.addEventListener('action:secondary', () => {
       if (this._thread._open) {
@@ -89,6 +89,10 @@ class CommentItem extends HTMLElement {
       this.dispatchEvent(
         new CustomEvent('reply:add', { detail: { text: ev.detail.text }, bubbles: true })
       );
+      this._thread.stopCompose({ clear: true }); // opcional
+    });
+    this._thread.addEventListener('thread:state', (ev) => {
+      this._updateSecondaryLabel(Boolean(ev.detail?.open));
     });
 
     this._updateSecondaryLabel(false);
