@@ -22,19 +22,19 @@
 
 .categories-wrapper {
   padding: 0 16px;
+  
 }
 
 .categories-container {
   display: flex;
   gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 15px 15px;
   justify-content: center;
   align-items: center;
+  min-width: max-content; /* Hace que los hijos no se ajusten al ancho del contenedor */
 }
 
 .categories-container::-webkit-scrollbar {
@@ -45,7 +45,7 @@
   flex-shrink: 0;
   width: 136px;
   height: 136px;
-  background: linear-gradient(135deg, #b7f34d 0%, #6f982f 100%);
+  background: linear-gradient(135deg, var(--rushgames-primary) 0%, var(--rushgames-primary-d1) 100%);
   border-radius: 24px;
   display: flex;
   flex-direction: column;
@@ -53,10 +53,19 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Permite que los efectos sobresalgan */
+  z-index: 1;
+}
+
+.category-card::before,
+.category-card::after {
+  border-radius: inherit;
 }
 
 .category-card::before {
@@ -66,25 +75,77 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.category-card::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180%;
+  height: 180%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: radial-gradient(circle, var(--rushgames-primary-l1) 0%, transparent 70%);
+  opacity: 0;
+  filter: blur(18px);
+  transition: opacity 0.5s, transform 0.5s;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .category-card:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 24px rgba(126, 211, 33, 0.3);
+  transform: translateY(-10px) scale(1.07) rotate(-2deg);
+  box-shadow: 0 16px 40px 0 rgba(183, 243, 77, 0.25), 0 2px 8px 0 rgba(0,0,0,0.18);
+  background: linear-gradient(120deg, var(--rushgames-primary-l1) 0%, var(--rushgames-secondary) 100%);
 }
 
 .category-card:hover::before {
   opacity: 1;
+  animation: shine 0.8s linear;
+}
+
+.category-card:hover::after {
+  opacity: 0.7;
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulse-glow 1.2s infinite alternate;
+}
+
+@keyframes shine {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.7; filter: blur(18px); }
+  100% { opacity: 1; filter: blur(28px); }
 }
 
 .category-card:active {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-4px) scale(1.02) rotate(0deg);
 }
 
 .category-icon {
   font-size: 2.5rem;
   line-height: 1;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  z-index: 3;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.18) rotate(-8deg);
+  filter: drop-shadow(0 0 16px var(--rushgames-primary-l1));
+  animation: bounce-icon 0.5s;
+}
+
+@keyframes bounce-icon {
+  0% { transform: scale(1) rotate(0deg);}
+  40% { transform: scale(1.25) rotate(-12deg);}
+  60% { transform: scale(1.1) rotate(-8deg);}
+  100% { transform: scale(1.18) rotate(-8deg);}
 }
 
 .category-name {
@@ -94,6 +155,12 @@
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.5px;
+  z-index: 3;
+  transition: color 0.3s;
+}
+
+.category-card:hover .category-name {
+  color: var(--rushgames-secondary);
 }
 
 /* Responsive Design */
@@ -108,7 +175,7 @@
     font-size: 2rem;
   }
   .categories-container {
-    justify-content: flex-start;
+    justify-content: flex-start; /* Alinea a la izquierda para scroll */
   }
 
   .category-card {
@@ -135,9 +202,14 @@
     margin-bottom: 24px;
   }
 
+  .categories-wrapper {
+    padding: 0 8px;
+     
+  }
   .categories-container {
     gap: 16px;
     justify-content: flex-start;
+    min-width: max-content;
   }
 
   .category-card {
@@ -166,12 +238,13 @@
   }
 
   .categories-wrapper {
-    padding: 0 12px;
+    padding: 0 4px;
+    overflow-x: auto;
   }
-
   .categories-container {
     gap: 12px;
     justify-content: flex-start;
+    min-width: max-content;
   }
 
   .category-card {
