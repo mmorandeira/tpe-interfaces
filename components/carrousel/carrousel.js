@@ -16,7 +16,6 @@ class RushCarrousel extends HTMLElement {
     this.isTransitioning = false; // Flag to prevent multiple simultaneous transitions
     this.isMobile = false;      // Flag to track if we're on mobile
     this.isTablet = false;      // Flag to track if we're on tablet
-    this.title = null;
   }
 
 
