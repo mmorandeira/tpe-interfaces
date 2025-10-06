@@ -167,6 +167,23 @@ class RushGameInstructions extends HTMLElement {
     disconnectedCallback() {
         console.log('RushGameInstructions disconnected from DOM');
     }
+      
 }
+      
+  setTimeout(() => {
+        const instructions = [
+            { type: 'mouse', text: 'Haz clic izquierdo para seleccionar o interactuar.' },
+            { type: 'move', text: 'Selecciona una ficha y movela a un espacio vacio' },
+            { type: 'jump', text: 'Salta sobre una ficha para eliminarla.' },
+            { type: 'objective', text: 'El objetivo del juego es dejar una sola ficha en el tablero.' },
+            { type: 'coins', text: 'Podes usar tus RushCoins para deshacer una jugada.' }
+        ];
+        const gameInstructions = document.querySelector('rush-game-instructions');
+        if (gameInstructions) {
+            gameInstructions.setTitle('¿Cómo jugar?');
+            gameInstructions.setInstructions(instructions);
+        }
+    }, 100);
+
 
 customElements.define("rush-game-instructions", RushGameInstructions);
