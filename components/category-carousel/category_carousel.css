@@ -17,7 +17,7 @@
   color: rgba(255, 255, 255, 0.8);
   margin: 0 0 20px 0;
   padding: 0 5px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--text-title);
 }
 
 .categories-wrapper {

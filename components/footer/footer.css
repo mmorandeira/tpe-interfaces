@@ -25,11 +25,7 @@
 }
 
 .footer {
-  background: linear-gradient(
-    to bottom,
-    var(--neutral-black) 23%,
-    var(--neutral-surface-variant) 77%
-  );
+  background: linear-gradient(var(--neutral-surface-variant) 23%, var(--neutral-black) 77%);
   color: var(--text-primary);
   padding: 40px 0 0 0;
   font-family: var(--text-body);
