@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.breadcrumb-nav {
+  width: 100%;
+  padding: 16px 16px;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  padding: 4px 0;
+}
+
+.breadcrumb-link:hover {
+  color: var(--rushgames-primary);
+}
+
+.breadcrumb-link:focus {
+  outline: 2px solid var(--rushgames-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.breadcrumb-separator {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.breadcrumb-current {
+  color: var(--rushgames-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .breadcrumb-nav {
+    padding: 12px 0;
+  }
+
+  .breadcrumb-link,
+  .breadcrumb-current {
+    font-size: 0.85rem;
+  }
+
+  .breadcrumb-separator svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb-list {
+    gap: 4px;
+  }
+
+  .breadcrumb-link,
+  .breadcrumb-current {
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb-separator svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb-link {
+    transition: none;
+  }
+}
