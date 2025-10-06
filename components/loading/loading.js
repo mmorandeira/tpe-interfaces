@@ -1,4 +1,4 @@
-class RushLoadingScreen extends HTMLElement {
+class RushGameLoadingScreen extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -224,4 +224,4 @@ class RushLoadingScreen extends HTMLElement {
 }
 
 // Register the custom element
-customElements.define('rush-loading', RushLoadingScreen);
+customElements.define('rushgame-loading', RushGameLoadingScreen);

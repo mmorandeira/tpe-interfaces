@@ -1,4 +1,4 @@
-class RushCategoryCarousel extends HTMLElement {
+class RushGameCategoryCarousel extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -148,4 +148,5 @@ setTimeout(() => {
     // Aquí puedes filtrar juegos, navegar a otra página, etc.
   });
 }, 100);
-customElements.define('rush-category-carousel', RushCategoryCarousel);
+
+customElements.define('rushgame-category-carousel', RushGameCategoryCarousel);
