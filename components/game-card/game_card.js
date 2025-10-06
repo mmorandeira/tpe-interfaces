@@ -11,6 +11,9 @@ class RushGameCard extends HTMLElement {
       rating: 0,
     };
 
+    // Responsive handling
+    this.resizeObserver = null;
+
     this.init();
   }
 
@@ -35,6 +38,7 @@ class RushGameCard extends HTMLElement {
 
       this.setupElements();
       this.setupEventListeners();
+      this.setupResizeObserver();
       this.updateDisplay();
     } catch (error) {
       console.error('Error loading RushGameCard component:', error);
@@ -65,18 +69,47 @@ class RushGameCard extends HTMLElement {
     }
   }
 
+  setupResizeObserver() {
+    if ('ResizeObserver' in window) {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.handleResize();
+      });
+      this.resizeObserver.observe(this);
+    }
+  }
+
+  handleResize() {
+    // Add responsive behavior if needed
+    const width = this.offsetWidth;
+    
+    // Adjust title truncation based on available width
+    if (width < 180) {
+      this.updateTitleTruncation(8);
+    } else if (width < 200) {
+      this.updateTitleTruncation(10);
+    } else {
+      this.updateTitleTruncation(12);
+    }
+  }
+
+  updateTitleTruncation(maxLength) {
+    if (!this.gameTitle) return;
+    
+    let title = this.gameData.title;
+    if (title.length > maxLength) {
+      title = title.slice(0, maxLength - 3) + '...';
+    }
+    this.gameTitle.textContent = title;
+    this.gameTitle.setAttribute('title', this.gameData.title);
+  }
+
   updateDisplay() {
     /* Update title, image, rating, and buttons based on gameData */
 
     if (!this.gameTitle) return;
 
-    // truncate title if too long
-    let title = this.gameData.title;
-    if (title.length > 12) {
-      title = title.slice(0, 9) + '...';
-    }
-    this.gameTitle.textContent = title;
-    this.gameTitle.setAttribute('title', this.gameData.title);
+    // Use responsive title truncation
+    this.handleResize();
 
     // Update image
     if (this.gameData.image) {
@@ -114,6 +147,11 @@ class RushGameCard extends HTMLElement {
   }
 
   disconnectedCallback() {
+    // Clean up resize observer
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
     console.log('RushGameCard disconnected from DOM');
   }
 
@@ -142,4 +180,4 @@ class RushGameCard extends HTMLElement {
   }
 }
 
-customElements.define('rush-game-card', RushGameCard);
+customElements.define('rushgame-card', RushGameCard);
