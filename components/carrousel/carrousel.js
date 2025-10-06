@@ -1,4 +1,4 @@
-class RushCarrousel extends HTMLElement {
+class RushGameCarrousel extends HTMLElement {
   constructor() {
     super();
 
@@ -338,4 +338,4 @@ class RushCarrousel extends HTMLElement {
   }
 }
 
-customElements.define('rushgame-carrousel', RushCarrousel);
+customElements.define('rushgame-carrousel', RushGameCarrousel);
