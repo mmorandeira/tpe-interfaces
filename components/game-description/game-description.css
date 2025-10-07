@@ -1,0 +1,326 @@
+:root {
+  --clamp-lines: 3;
+}
+:host {
+  display: block;
+  width: 100%;
+  --share-bg: #9ef84a;
+  --share-text: #0a0a0a;
+  --share-radius: 18px;
+  --share-h: 28px;
+  --share-pad-x: 12px;
+  --share-gap: 10px;
+  --share-ico-size: 18px;
+}
+.gd {
+  /* card */
+  background: #0f1722; /* surface */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  padding: 24px;
+
+  /* auto layout vertical */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #e5e7eb;
+}
+
+/* 1) Descripción + Share (fila) */
+.gd__desc-share {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.gd__desc {
+  line-height: 1.55;
+  font-size: 14px;
+  color: #e5e7eb;
+  position: relative;
+}
+
+.gd__desc-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #d1d5db;
+  font-family:
+    'Orbitron',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Inter,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+}
+
+.gd__desc-text {
+  position: relative;
+}
+
+/* Clamp + degradé usando el color del card */
+.gd__desc-text ::slotted(*) {
+  /* estilos base del texto */
+  color: #e5e7eb;
+  line-height: 1.55;
+  font-size: 14px;
+  margin: 0; /* evita colapso de márgenes del hijo */
+}
+
+/* colapsado: clamp dinámico con degradé en el wrapper */
+:host(:not([expanded])) .gd__desc-text ::slotted(*) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--clamp-lines, 3);
+  line-clamp: var(--clamp-lines, 3);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Agregar "...mas" al final del texto truncado - inline con el texto */
+:host(:not([expanded])) .gd__desc-text ::slotted(*)::after {
+  content: '...mas';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #e5e7eb;
+  font-size: 14px;
+  line-height: 1.55;
+  background: #0f1722;
+  padding-left: 4px;
+  cursor: pointer;
+  z-index: 2;
+  /* Ajustar para alinear con el baseline del texto */
+  transform: translateY(calc(-1.55em + 1em));
+}
+
+/* Degradé para el truncado */
+:host(:not([expanded])) .gd__desc-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3.2em;
+  background: linear-gradient(to bottom, rgba(15, 23, 34, 0), #0f1722 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+.gd__share:active {
+  transform: translateY(1px);
+}
+.gd__share:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #0f1722,
+    0 0 0 4px rgba(158, 248, 74, 0.65); /* focus ring */
+}
+/* Botón Compartir (chip) */
+.gd__share {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--share-gap);
+  border: none;
+  border-radius: var(--share-radius);
+  height: var(--share-h);
+  padding: 0 var(--share-pad-x);
+  background: var(--share-bg);
+  color: var(--share-text);
+  cursor: pointer;
+
+  /* tipografía del botón: hereda la de tu página para matchear Figma */
+  font:
+    700 14px/1 system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Inter,
+    'Helvetica Neue',
+    Arial;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+
+  /* un toque de relieve */
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.1) inset,
+    0 2px 6px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 0.06s ease,
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.gd__share-ico {
+  width: var(--share-ico-size); /* p.ej. 18px */
+  height: var(--share-ico-size);
+  background: var(--share-text); /* negro del Figma */
+  -webkit-mask: var(--share-mask) no-repeat center / contain;
+  mask: var(--share-mask) no-repeat center / contain;
+}
+.gd__share-label {
+  line-height: 1;
+}
+
+.gd__share:hover {
+  filter: brightness(1.04);
+}
+
+/* 2) Imagen + Info */
+.gd__game-info {
+  display: grid;
+  grid-template-columns: 220px 1fr; /* poster | info */
+  gap: 16px;
+  align-items: start;
+}
+.gd__poster {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0b1119;
+}
+.gd__poster img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.gd__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.gd__title {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+.gd__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0;
+}
+.gd__label {
+  min-width: max-content;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.gd__value {
+  color: #c7d2fe;
+  font-weight: 600;
+}
+
+/* 3) Gameplays */
+.gd__gameplays {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gd__section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #d1d5db;
+}
+.gd__gp-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.gd__gp {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0b1119;
+  padding: 14px 12px;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+/* 4) Redes */
+.gd__social-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.gd__social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0b1119;
+  color: #e5e7eb;
+  padding: 8px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.gd__toggle {
+  appearance: none;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #0b1119;
+  color: #e5e7eb;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.gd__toggle:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+/* Estado colapsado: ocultar secciones 2/3/4 y mostrar botón toggle */
+:host(:not([expanded])) .gd__game-info,
+:host(:not([expanded])) .gd__gameplays,
+:host(:not([expanded])) .gd__social {
+  display: none;
+}
+
+/* Footer para botón expandido */
+.gd__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gd__toggle-expanded {
+  color: #e5e7eb;
+  font-size: 14px;
+  line-height: 1.55;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.gd__toggle-expanded:hover {
+  color: #cbd5e1;
+}
+
+/* Mostrar footer solo cuando está expandido */
+:host(:not([expanded])) .gd__footer {
+  display: none;
+}
+
+:host([expanded]) .gd__footer {
+  display: flex;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .gd__game-info {
+    grid-template-columns: 1fr;
+  }
+  .gd__social-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
