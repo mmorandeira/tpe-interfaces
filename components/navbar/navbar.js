@@ -7,7 +7,25 @@ class RushGameNavbar extends HTMLElement {
       isLoggedIn: false,
     };
 
+    // verify status session from localStorage
+    this.checkLoginStatus();
+
     this.init();
+  }
+
+  checkLoginStatus() {
+    try {
+      const userDataString = localStorage.getItem('rushgames_user');
+      if (userDataString) {
+        const userData = JSON.parse(userDataString);
+        if (userData && userData.isLoggedIn) {
+          this.navbarData.isLoggedIn = true;
+        }
+      }
+    } catch (error) {
+      // if error, assume not logged in
+      this.navbarData.isLoggedIn = false;
+    }
   }
 
   async init() {
@@ -27,7 +45,7 @@ class RushGameNavbar extends HTMLElement {
       this.shadowRoot.appendChild(content);
 
       this.setupEventListeners();
-      this.updateUI(); // Inicializar el estado de la UI
+      this.updateUI(); // Initialize UI state
 
       window.addEventListener('resize', () => {
         this.updateUI();
@@ -69,12 +87,23 @@ class RushGameNavbar extends HTMLElement {
 
     // logout button
     mobileLogoutButton?.addEventListener('click', () => {
-      this.handleLogin();
+      this.handleLogout();
     });
   }
 
   handleLogin() {
-    this.isLoggedIn = !this.navbarData.isLoggedIn;
+    // Redirect to login page if not logged in
+    if (!this.navbarData.isLoggedIn) {
+      window.location.href = './login-singup.html';
+    }
+  }
+
+  handleLogout() {
+    // clean localStorage
+    localStorage.removeItem('rushgames_user');
+
+    // set logout
+    this.isLoggedIn = false;
   }
 
   get isLoggedIn() {
