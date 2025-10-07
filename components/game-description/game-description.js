@@ -51,6 +51,9 @@ class GameDescription extends HTMLElement {
       this.shadowRoot.host.classList.add('no-mask');
     }
 
+    // === Load social icons ===
+    this.#loadSocialIcons();
+
     this._mounted = true;
     this.#render();
 
@@ -92,6 +95,23 @@ class GameDescription extends HTMLElement {
 
     // Open modal
     modal.open();
+  }
+
+  async #loadSocialIcons() {
+    try {
+      const SOCIAL_BASE = new URL('../../assets/icons/social/', import.meta.url);
+      const platforms = ['facebook', 'x', 'instagram', 'tiktok', 'youtube'];
+
+      for (const platform of platforms) {
+        const iconURL = new URL(`${platform}.svg`, SOCIAL_BASE).href;
+        const iconEl = this.$(`[data-icon="${platform}"]`);
+        if (iconEl) {
+          iconEl.style.setProperty('--social-icon-mask', `url("${iconURL}")`);
+        }
+      }
+    } catch (error) {
+      console.warn('No se pudieron cargar los iconos sociales:', error);
+    }
   }
 
   #render() {
