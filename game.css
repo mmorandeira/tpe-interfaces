@@ -1,0 +1,79 @@
+/* Game Page Specific Styles */
+
+/* Game Page Layout */
+#game-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-title {
+  font-family: var(--text-title);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 20px 0;
+  text-align: left;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.game-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.game-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.game-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Instructions component should have fixed width like in Figma */
+.game-layout > rush-game-instructions {
+  flex: 0 0 300px; /* Fixed width, no grow/shrink */
+}
+
+/* Spacing between sections */
+game-description {
+  margin-bottom: 40px;
+}
+
+comment-section {
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-layout {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .game-layout > rush-game-instructions {
+    flex: 1; /* Full width on mobile */
+  }
+
+  .game-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  game-description {
+    margin-bottom: 30px;
+  }
+}

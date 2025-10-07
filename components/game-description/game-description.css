@@ -11,6 +11,25 @@
   --share-pad-x: 12px;
   --share-gap: 10px;
   --share-ico-size: 18px;
+
+  /* Typography tokens to match Figma */
+  --fz-title: 32px; /* Figma: main title */
+  --fz-section: 18px;
+  --fz-label: 24px; /* Rating/Fecha labels */
+  --fz-body: 14px;
+  --lh-body: 1.55;
+
+  /* Poster sizing (Figma: 243x369, radius 18) */
+  --poster-w: 243px;
+  --poster-h: 369px;
+  --poster-radius: 18px;
+
+  /* Stars */
+  --star-size: 20px;
+  --star-gap: 6px;
+  --stars-empty: #38465a;
+  --stars-fill-color: #b7f34d; /* matches star.svg fill */
+  --stars-fill: 0%;
 }
 .gd {
   /* card */
@@ -35,14 +54,14 @@
   gap: 16px;
 }
 .gd__desc {
-  line-height: 1.55;
-  font-size: 14px;
+  line-height: var(--lh-body);
+  font-size: var(--fz-body);
   color: #e5e7eb;
   position: relative;
 }
 
 .gd__desc-title {
-  font-size: 18px;
+  font-size: var(--fz-section);
   font-weight: 700;
   margin: 0 0 12px 0;
   color: #d1d5db;
@@ -66,8 +85,8 @@
 .gd__desc-text ::slotted(*) {
   /* estilos base del texto */
   color: #e5e7eb;
-  line-height: 1.55;
-  font-size: 14px;
+  line-height: var(--lh-body);
+  font-size: var(--fz-body);
   margin: 0; /* evita colapso de márgenes del hijo */
 }
 
@@ -95,7 +114,7 @@
   cursor: pointer;
   z-index: 2;
   /* Ajustar para alinear con el baseline del texto */
-  transform: translateY(calc(-1.55em + 1em));
+  transform: translateY(calc(-2.55em + 1em));
 }
 
 /* Degradé para el truncado */
@@ -172,21 +191,23 @@
 /* 2) Imagen + Info */
 .gd__game-info {
   display: grid;
-  grid-template-columns: 220px 1fr; /* poster | info */
+  grid-template-columns: var(--poster-w) 1fr; /* poster | info */
   gap: 16px;
   align-items: start;
 }
 .gd__poster {
   margin: 0;
-  border-radius: 12px;
+  border-radius: var(--poster-radius);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
   background: #0b1119;
+  width: var(--poster-w);
 }
 .gd__poster img {
   display: block;
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: var(--poster-h);
+  object-fit: cover;
 }
 .gd__info {
   display: flex;
@@ -194,10 +215,20 @@
   gap: 8px;
 }
 .gd__title {
-  font-size: 26px;
-  font-weight: 800;
+  font-size: var(--fz-title);
+  font-weight: 700;
   margin: 0;
   letter-spacing: 0.2px;
+  font-family:
+    'Orbitron',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Inter,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
 }
 .gd__row {
   display: flex;
@@ -207,12 +238,57 @@
 }
 .gd__label {
   min-width: max-content;
-  font-size: 14px;
+  font-size: var(--fz-label);
   color: #cbd5e1;
+  font-family:
+    'Orbitron',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Inter,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
 }
 .gd__value {
   color: #c7d2fe;
   font-weight: 600;
+}
+
+/* Stars styling using mask-image with fractional fill */
+.gd__stars {
+  position: relative;
+  width: calc(var(--star-size) * 5 + var(--star-gap) * 4 + 2px);
+  height: var(--star-size);
+  overflow: visible; /* avoid clipping last star due to rounding */
+}
+.gd__stars::before,
+.gd__stars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  display: block;
+  -webkit-mask: var(--star-mask) left center / calc(var(--star-size) + var(--star-gap))
+    var(--star-size) repeat-x;
+  mask: var(--star-mask) left center / calc(var(--star-size) + var(--star-gap)) var(--star-size)
+    repeat-x;
+}
+.gd__stars::before {
+  right: 0;
+  background: var(--stars-empty);
+}
+.gd__stars::after {
+  width: var(--stars-fill);
+  background: var(--stars-fill-color);
+}
+
+/* Hide label + numeric value in the rating row */
+.gd__row[data-stars-row] .gd__label,
+.gd__row[data-stars-row] .gd__value {
+  display: none !important;
 }
 
 /* 3) Gameplays */
@@ -222,7 +298,7 @@
   gap: 10px;
 }
 .gd__section-title {
-  font-size: 18px;
+  font-size: var(--fz-section);
   font-weight: 700;
   margin: 0;
   color: #d1d5db;
@@ -291,7 +367,7 @@
 /* Footer para botón expandido */
 .gd__footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .gd__toggle-expanded {

@@ -35,12 +35,15 @@ class GameDescription extends HTMLElement {
     const clamp = this.getAttribute('clamp');
     if (clamp) this.shadowRoot.host.style.setProperty('--clamp-lines', clamp);
 
-    // === Botón Compartir: máscara SVG + fallback ===
+    // === Icon masks: share + star ===
     try {
       const UI_BASE = new URL('../../assets/icons/ui/', import.meta.url);
       const shareURL = new URL('share.svg', UI_BASE).href;
+      const starURL = new URL('star.svg', UI_BASE).href;
       const ico = this.$('.gd__share-ico');
       ico?.style.setProperty('--share-mask', `url("${shareURL}")`);
+      // expose star mask for CSS
+      this.shadowRoot.host.style.setProperty('--star-mask', `url("${starURL}")`);
 
       // Si el navegador NO soporta mask-image → fallback
       if (!CSS.supports('mask-image', 'url(#)')) this.shadowRoot.host.classList.add('no-mask');
@@ -80,11 +83,15 @@ class GameDescription extends HTMLElement {
       img.src = p ? p : new URL('../../assets/placeholders/poster.webp', import.meta.url).href;
     }
 
-    // Rating simple
+    // Rating as fractional stars (0..5)
     const rating = Number(this.getAttribute('rating') || 0);
-    this.$('.gd__stars')?.replaceChildren(
-      document.createTextNode('★★★★★'.slice(0, Math.round(rating)))
-    );
+    const clamped = Math.max(0, Math.min(5, rating));
+    const percent = (clamped / 5) * 100;
+    const starsEl = this.$('.gd__stars');
+    if (starsEl) {
+      starsEl.setAttribute('aria-label', `${clamped.toFixed(1)} de 5 estrellas`);
+      this.shadowRoot.host.style.setProperty('--stars-fill', `${percent}%`);
+    }
     const val = this.$('.gd__value');
     if (val) val.textContent = rating ? rating.toFixed(1) : '0.0';
 

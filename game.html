@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Web Component Navbar</title>
     <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./game.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,14 +18,23 @@
 
     <main id="game-page">
       <!-- Breadcrumb -->
-
       <rush-breadcrumb id="gameBreadcrumb"></rush-breadcrumb>
 
-      <rush-game-instructions></rush-game-instructions>
+      <!-- Game Title -->
+      <h1 class="game-title">Green Lantern: El Solitario Esmeralda</h1>
+
+      <!-- Game Layout: Image + Instructions -->
+      <div class="game-layout">
+        <div class="game-image-container">
+          <img src="./assets/peg-solitaire.png" alt="Tablero de Peg Solitaire" class="game-image" />
+        </div>
+        <rush-game-instructions></rush-game-instructions>
+      </div>
+
       <game-description
         title="Green Lantern: El Solitario Esmeralda"
-        poster="./assets/posters/green-lantern.webp"
-        rating="4.6"
+        poster="./assets/PegSolitare.jpg"
+        rating="5.0"
         release-date="2009-01-01"
         clamp="3"
       >
@@ -48,6 +58,7 @@
     <script src="./components/breadcrumb/breadcrumb.js" defer></script>
     <script src="./components/game-instructions/game_instructions.js" defer></script>
     <script type="module" src="./components/game-description/game-description.js"></script>
+    <script src="./components/footer/footer.js"></script>
 
     <script src="./components/comments/reply-row/reply-row.js" defer></script>
     <script src="./components/comments/action-row/action-row.js" defer></script>
