@@ -16,6 +16,11 @@ class RushGameCarrousel extends HTMLElement {
     this.isTransitioning = false; // Flag to prevent multiple simultaneous transitions
     this.isMobile = false; // Flag to track if we're on mobile
     this.isTablet = false; // Flag to track if we're on tablet
+
+    // API configuration
+    this.apiUrl = 'https://vj.interfaces.jima.com.ar/api/v2';
+    this.gamesData = []; // Store games data from API
+    this.isLoadingAPI = false; // Flag to track API loading state
   }
 
   async init() {
@@ -59,11 +64,122 @@ class RushGameCarrousel extends HTMLElement {
 
       // Wait for the next frame to ensure everything is rendered
       requestAnimationFrame(() => {
+        // Check if this carousel should load from API
+        this.checkAndLoadFromAPI();
         this.updateCarrousel();
       });
     } catch (error) {
       console.error('Error loading RushCarrousel component:', error);
     }
+  }
+
+  async checkAndLoadFromAPI() {
+    // Check if api-source attribute is present and not empty
+    const apiSource = this.getAttribute('api-source');
+    if (apiSource !== null && apiSource !== 'false') {
+      await this.loadGamesFromAPI();
+    }
+  }
+
+  async loadGamesFromAPI() {
+    if (this.isLoadingAPI) return; // Prevent multiple simultaneous API calls
+
+    this.isLoadingAPI = true;
+
+    try {
+      // Store existing manual cards before showing loading
+      const existingCards = Array.from(this.querySelectorAll('rushgame-card')).map((card) =>
+        card.cloneNode(true)
+      );
+
+      const response = await fetch(this.apiUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const games = await response.json();
+      this.gamesData = games;
+
+      // Process games based on category or other filters
+      const processedGames = this.filterGamesByCategory(games);
+
+      // Generate cards from API data, preserving existing cards
+      this.generateCardsFromAPI(processedGames, existingCards);
+    } catch (error) {
+      console.error('Error loading games from API:', error);
+      this.showErrorState();
+    } finally {
+      this.isLoadingAPI = false;
+    }
+  }
+
+  filterGamesByCategory(games) {
+    const category = this.getAttribute('category');
+    const maxGames = parseInt(this.getAttribute('max-games')) || 10;
+
+    let filteredGames = games;
+
+    // Filter by category if specified
+    if (category && category !== 'all') {
+      filteredGames = games.filter(
+        (game) =>
+          game.genres &&
+          game.genres.some((genre) => genre.name.toLowerCase() === category.toLowerCase())
+      );
+    }
+
+    // Limit number of games
+    return filteredGames.slice(0, maxGames);
+  }
+
+  generateCardsFromAPI(games, existingCards = []) {
+    this.innerHTML = '';
+
+    // First, add back the existing manual cards
+    existingCards.forEach((card) => {
+      this.appendChild(card);
+    });
+
+    // Then create rushgame-card elements for each game from API
+    games.forEach((game) => {
+      const card = document.createElement('rushgame-card');
+
+      // Set attributes based on API data
+      card.setAttribute('game-id', game.id.toString());
+      card.setAttribute('title', game.name);
+      card.setAttribute('image', game.background_image_low_res || game.background_image);
+      card.setAttribute('rating', game.rating.toString());
+
+      // Add category as data attribute if available
+      if (game.genres && game.genres.length > 0) {
+        card.setAttribute('category', game.genres[0].name);
+      }
+
+      this.appendChild(card);
+    });
+  }
+
+  showErrorState() {
+    // Remove only API-generated cards, keep manual cards
+    const manualCards = Array.from(this.querySelectorAll('rushgame-card')).filter((card) => {
+      // Keep cards that don't have numeric game-id (manual cards)
+      const gameId = card.getAttribute('game-id');
+      return gameId && isNaN(parseInt(gameId));
+    });
+
+    // Clear all content
+    this.innerHTML = '';
+
+    // Add back manual cards
+    manualCards.forEach((card) => {
+      this.appendChild(card);
+    });
+
+    // Create error indicator
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'api-error';
+    errorDiv.innerHTML = '<p>Error al cargar los juegos. Intenta nuevamente.</p>';
+    this.appendChild(errorDiv);
   }
 
   setupElements() {
@@ -241,6 +357,58 @@ class RushGameCarrousel extends HTMLElement {
     return 24;
   }
 
+  animateCards(direction) {
+    // Get all visible game cards
+    const cards = this.querySelectorAll('rushgame-card');
+    if (!cards || cards.length === 0) return;
+
+    // Get all cards that are currently visible in the viewport
+    let cardsToAnimate = [];
+
+    if (this.isMobile) {
+      cardsToAnimate = Array.from(cards);
+    } else {
+      const containerRect = this.container?.getBoundingClientRect();
+
+      if (containerRect) {
+        cards.forEach((card) => {
+          const cardRect = card.getBoundingClientRect();
+          // Check if card is at least partially visible in the container
+          const isVisible =
+            cardRect.right > containerRect.left && cardRect.left < containerRect.right;
+
+          if (isVisible) {
+            cardsToAnimate.push(card);
+          }
+        });
+      } else {
+        const startIndex = this.currentIndex;
+        const endIndex = Math.min(this.currentIndex + this.cardsToShow, cards.length);
+
+        for (let i = startIndex; i < endIndex; i++) {
+          if (cards[i]) {
+            cardsToAnimate.push(cards[i]);
+          }
+        }
+      }
+    }
+
+    // Apply animation to all visible cards
+    cardsToAnimate.forEach((card, index) => {
+      const staggerDelay = this.isMobile ? 50 : 100;
+
+      // Stagger the animation slightly for each card
+      setTimeout(() => {
+        // Call the appropriate animation method on the card
+        if (direction === 'next') {
+          card.rotateLeft();
+        } else if (direction === 'prev') {
+          card.rotateRight();
+        }
+      }, index * staggerDelay);
+    });
+  }
+
   goToNext() {
     // Only on mobile (≤480px), navigation buttons are hidden
     if (this.isMobile) return;
@@ -248,11 +416,16 @@ class RushGameCarrousel extends HTMLElement {
     // Do not do anything if a transition is in progress
     if (this.isTransitioning) return;
 
+    // Trigger card rotation animation before moving
+    this.animateCards('next');
+
     // Do not go beyond the maximum index
     this.currentIndex = Math.min(this.currentIndex + 1, this.maxIndex);
 
-    // Animate to the new position
-    this.animateToIndex();
+    // Animate to the new position with a slight delay to let card animation start
+    setTimeout(() => {
+      this.animateToIndex();
+    }, 150);
   }
 
   goToPrevious() {
@@ -262,11 +435,16 @@ class RushGameCarrousel extends HTMLElement {
     // Do not do anything if a transition is in progress
     if (this.isTransitioning) return;
 
+    // Trigger card rotation animation before moving
+    this.animateCards('prev');
+
     // Do not go back beyond index 0
     this.currentIndex = Math.max(this.currentIndex - 1, 0);
 
-    // Animate to the new position
-    this.animateToIndex();
+    // Animate to the new position with a slight delay to let card animation start
+    setTimeout(() => {
+      this.animateToIndex();
+    }, 150);
   }
 
   animateToIndex() {
@@ -309,7 +487,7 @@ class RushGameCarrousel extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['cards-to-show', 'title'];
+    return ['cards-to-show', 'title', 'api-source', 'category', 'max-games'];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -331,6 +509,23 @@ class RushGameCarrousel extends HTMLElement {
         // Update the title text only if the component is initialized
         if (this.titleElement) {
           this.updateTitle(newValue);
+        }
+        break;
+      case 'api-source':
+        // Reload from API if the attribute changed
+        if (this.shadowRoot && newValue !== null && newValue !== 'false') {
+          this.checkAndLoadFromAPI();
+        }
+        break;
+      case 'category':
+      case 'max-games':
+        // Reload from API if category or max-games changed and API is enabled
+        if (
+          this.shadowRoot &&
+          this.getAttribute('api-source') !== null &&
+          this.getAttribute('api-source') !== 'false'
+        ) {
+          this.checkAndLoadFromAPI();
         }
         break;
     }

@@ -37,7 +37,10 @@
   background: transparent;
   border-radius: 0;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition:
+    background 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
   position: relative;
   border: none;
@@ -50,17 +53,16 @@
   flex-direction: column;
   box-shadow: none;
   aspect-ratio: unset;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .game-card:hover {
   transform: translateY(-8px) scale(1.02);
-
   border-color: var(--rushgames-primary);
-}
-
-.game-card:focus-within {
-  outline: 2px solid var(--rushgames-primary);
-  outline-offset: 2px;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Game Image Container */
@@ -437,5 +439,128 @@
 
   .game-header {
     margin-bottom: 0;
+  }
+}
+
+/* Card rotation animations for carousel navigation */
+.game-card.rotating-left {
+  animation: rotateLeft 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  transition: none !important;
+}
+
+.game-card.rotating-right {
+  animation: rotateRight 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  transition: none !important;
+}
+
+@keyframes rotateLeft {
+  0% {
+    transform: translateY(0) scale(1) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.08) rotateY(-25deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateY(0deg);
+  }
+}
+
+@keyframes rotateRight {
+  0% {
+    transform: translateY(0) scale(1) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.08) rotateY(25deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateY(0deg);
+  }
+}
+
+/* Simple fallback animations for debugging */
+@keyframes simpleRotateLeft {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-15deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes simpleRotateRight {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(15deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Responsive animation adjustments */
+@media (max-width: 768px) {
+  @keyframes rotateLeft {
+    0% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-8px) scale(1.03) rotateY(-10deg);
+    }
+    100% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+  }
+
+  @keyframes rotateRight {
+    0% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-8px) scale(1.03) rotateY(10deg);
+    }
+    100% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+  }
+
+  .game-card.rotating-left,
+  .game-card.rotating-right {
+    animation-duration: 0.4s;
+  }
+}
+
+@media (max-width: 480px) {
+  @keyframes rotateLeft {
+    0% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-5px) scale(1.02) rotateY(-5deg);
+    }
+    100% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+  }
+
+  @keyframes rotateRight {
+    0% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-5px) scale(1.02) rotateY(5deg);
+    }
+    100% {
+      transform: translateY(0) scale(1) rotateY(0deg);
+    }
+  }
+
+  .game-card.rotating-left,
+  .game-card.rotating-right {
+    animation-duration: 0.3s;
   }
 }

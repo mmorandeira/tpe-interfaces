@@ -58,13 +58,13 @@ class RushGameCard extends HTMLElement {
   setupEventListeners() {
     this.card.addEventListener('click', (e) => {
       if (e.target.closest('button')) return;
-      this.handleClick();
+      this.handlePlayClick();
     });
 
     if (this.playBtn) {
       this.playBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        this.handleClick();
+        this.handlePlayClick();
       });
     }
   }
@@ -139,11 +139,83 @@ class RushGameCard extends HTMLElement {
     });
   }
 
-  handleClick() {}
+  handlePlayClick() {
+    // Redirect to game.html
+    window.location.href = 'game.html';
+  }
+
+  rotateLeft() {
+    // Ensure component is fully initialized
+    if (!this.card || !this.shadowRoot) return;
+
+    // Remove any existing animations
+    this.card.style.animation = '';
+    this.card.classList.remove('rotating-left', 'rotating-right');
+
+    // Force a reflow to ensure the removal takes effect
+    this.card.offsetHeight;
+
+    // Apply animation directly via style
+    let animationName = 'simpleRotateLeft';
+    let duration = '0.8s';
+
+    // Adjust for mobile
+    if (window.innerWidth <= 480) {
+      duration = '0.3s';
+    } else if (window.innerWidth <= 768) {
+      duration = '0.5s';
+    }
+
+    this.card.style.animation = `${animationName} ${duration} ease-in-out`;
+
+    // Remove animation after completion
+    setTimeout(
+      () => {
+        if (this.card) {
+          this.card.style.animation = '';
+        }
+      },
+      parseFloat(duration) * 1000
+    );
+  }
+
+  rotateRight() {
+    // Ensure component is fully initialized
+    if (!this.card || !this.shadowRoot) return;
+
+    // Remove any existing animations
+    this.card.style.animation = '';
+    this.card.classList.remove('rotating-left', 'rotating-right');
+
+    // Force a reflow to ensure the removal takes effect
+    this.card.offsetHeight;
+
+    // Apply animation directly via style
+    let animationName = 'simpleRotateRight';
+    let duration = '0.8s';
+
+    // Adjust for mobile
+    if (window.innerWidth <= 480) {
+      duration = '0.3s';
+    } else if (window.innerWidth <= 768) {
+      duration = '0.5s';
+    }
+
+    this.card.style.animation = `${animationName} ${duration} ease-in-out`;
+
+    // Remove animation after completion
+    setTimeout(
+      () => {
+        if (this.card) {
+          this.card.style.animation = '';
+        }
+      },
+      parseFloat(duration) * 1000
+    );
+  }
 
   connectedCallback() {
     this.setAttribute('tabindex', '0');
-    console.log('RushGameCard connected to DOM');
   }
 
   disconnectedCallback() {
@@ -152,7 +224,6 @@ class RushGameCard extends HTMLElement {
       this.resizeObserver.disconnect();
       this.resizeObserver = null;
     }
-    console.log('RushGameCard disconnected from DOM');
   }
 
   static get observedAttributes() {
