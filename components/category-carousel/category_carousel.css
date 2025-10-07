@@ -22,7 +22,6 @@
 
 .categories-wrapper {
   padding: 0 16px;
-  
 }
 
 .categories-container {
@@ -45,7 +44,11 @@
   flex-shrink: 0;
   width: 136px;
   height: 136px;
-  background: linear-gradient(135deg, var(--rushgames-primary) 0%, var(--rushgames-primary-d1) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--rushgames-primary) 0%,
+    var(--rushgames-primary-d1) 100%
+  );
   border-radius: 24px;
   display: flex;
   flex-direction: column;
@@ -53,7 +56,7 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  transition: 
+  transition:
     box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -90,15 +93,23 @@
   background: radial-gradient(circle, var(--rushgames-primary-l1) 0%, transparent 70%);
   opacity: 0;
   filter: blur(18px);
-  transition: opacity 0.5s, transform 0.5s;
+  transition:
+    opacity 0.5s,
+    transform 0.5s;
   z-index: 0;
   pointer-events: none;
 }
 
 .category-card:hover {
   transform: translateY(-10px) scale(1.07) rotate(-2deg);
-  box-shadow: 0 16px 40px 0 rgba(183, 243, 77, 0.25), 0 2px 8px 0 rgba(0,0,0,0.18);
-  background: linear-gradient(120deg, var(--rushgames-primary-l1) 0%, var(--rushgames-secondary) 100%);
+  box-shadow:
+    0 16px 40px 0 rgba(183, 243, 77, 0.25),
+    0 2px 8px 0 rgba(0, 0, 0, 0.18);
+  background: linear-gradient(
+    120deg,
+    var(--rushgames-primary-l1) 0%,
+    var(--rushgames-secondary) 100%
+  );
 }
 
 .category-card:hover::before {
@@ -113,14 +124,26 @@
 }
 
 @keyframes shine {
-  0% { opacity: 0; }
-  30% { opacity: 1; }
-  100% { opacity: 0.2; }
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
 
 @keyframes pulse-glow {
-  0% { opacity: 0.7; filter: blur(18px); }
-  100% { opacity: 1; filter: blur(28px); }
+  0% {
+    opacity: 0.7;
+    filter: blur(18px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(28px);
+  }
 }
 
 .category-card:active {
@@ -142,10 +165,18 @@
 }
 
 @keyframes bounce-icon {
-  0% { transform: scale(1) rotate(0deg);}
-  40% { transform: scale(1.25) rotate(-12deg);}
-  60% { transform: scale(1.1) rotate(-8deg);}
-  100% { transform: scale(1.18) rotate(-8deg);}
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  40% {
+    transform: scale(1.25) rotate(-12deg);
+  }
+  60% {
+    transform: scale(1.1) rotate(-8deg);
+  }
+  100% {
+    transform: scale(1.18) rotate(-8deg);
+  }
 }
 
 .category-name {
@@ -204,7 +235,6 @@
 
   .categories-wrapper {
     padding: 0 8px;
-     
   }
   .categories-container {
     gap: 16px;
