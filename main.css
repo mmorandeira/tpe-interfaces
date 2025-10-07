@@ -45,4 +45,15 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(var(--neutral-black) 23%, var(--neutral-surface-variant) 77%);
   color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Auth page specific styling */
+.auth-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
 }

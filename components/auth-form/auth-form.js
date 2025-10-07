@@ -1,4 +1,4 @@
-class RushAuthForm extends HTMLElement {
+class RushGameAuthForm extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -35,6 +35,9 @@ class RushAuthForm extends HTMLElement {
   }
 
   setupElements() {
+    // Success message
+    this.successMessage = this.shadowRoot.querySelector('#successMessage');
+
     // Tabs
     this.registerTab = this.shadowRoot.querySelector('#registerTab');
     this.loginTab = this.shadowRoot.querySelector('#loginTab');
@@ -69,7 +72,7 @@ class RushAuthForm extends HTMLElement {
     this.loginFormElement.addEventListener('submit', (e) => this.handleLogin(e));
     this.registerFormElement.addEventListener('submit', (e) => this.handleRegister(e));
 
-    // Real-time validation for register form
+    // Validation for register form
     this.registerEmail.addEventListener('blur', () =>
       this.validateEmail(this.registerEmail, 'registerEmailError')
     );
@@ -270,14 +273,45 @@ class RushAuthForm extends HTMLElement {
       password: this.loginPassword.value,
     };
 
-    this.dispatchEvent(
-      new CustomEvent('loginSubmit', {
-        detail: formData,
-        bubbles: true,
+    // simulate login
+    this.simulateLogin(formData);
+  }
+
+  simulateLogin(formData) {
+    // Save status session in localStorage
+    localStorage.setItem(
+      'rushgames_user',
+      JSON.stringify({
+        email: formData.email,
+        isLoggedIn: true,
+        loginTime: new Date().toISOString(),
       })
     );
 
-    console.log('Login submitted:', formData);
+    // Redirect to home after a short delay
+    setTimeout(() => {
+      window.location.href = './index.html';
+    }, 500);
+  }
+
+  showSuccessAnimation() {
+    // Ensure the success message element exists
+    if (!this.successMessage) {
+      console.error('Success message element not found');
+      // Fallback: redirect immediately if element is missing
+      setTimeout(() => {
+        window.location.href = './index.html';
+      }, 500);
+      return;
+    }
+
+    // Show success message with animation
+    this.successMessage.classList.add('show');
+
+    // Hide after animation and redirect
+    setTimeout(() => {
+      window.location.href = './index.html';
+    }, 2000); // 2 seconds to show the success message
   }
 
   handleRegister(e) {
@@ -316,14 +350,18 @@ class RushAuthForm extends HTMLElement {
       password: this.registerPassword.value,
     };
 
-    this.dispatchEvent(
-      new CustomEvent('registerSubmit', {
-        detail: formData,
-        bubbles: true,
+    // Save user data to localStorage
+    localStorage.setItem(
+      'rushgames_user',
+      JSON.stringify({
+        email: formData.email,
+        isLoggedIn: true,
+        loginTime: new Date().toISOString(),
       })
     );
 
-    console.log('Register submitted:', formData);
+    // Show success animation and then redirect
+    this.showSuccessAnimation();
   }
 
   handleSocialAuth(e) {
@@ -344,6 +382,11 @@ class RushAuthForm extends HTMLElement {
   reset() {
     this.loginFormElement.reset();
     this.registerFormElement.reset();
+
+    // Hide success message (if it exists)
+    if (this.successMessage) {
+      this.successMessage.classList.remove('show');
+    }
 
     // Clear all errors
     this.shadowRoot.querySelectorAll('.error-message').forEach((el) => {
@@ -387,4 +430,4 @@ class RushAuthForm extends HTMLElement {
   }
 }
 
-customElements.define('rush-auth-form', RushAuthForm);
+customElements.define('rushgame-auth-form', RushGameAuthForm);
