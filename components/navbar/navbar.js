@@ -60,6 +60,9 @@ class RushGameNavbar extends HTMLElement {
     const loginButton = this.shadowRoot.querySelector('.login-button');
     const mobileLogoutButton = this.shadowRoot.querySelector('.mobile-logout-button');
     const mobileLoginBtn = this.shadowRoot.querySelector('.mobile-login-btn');
+    const logoLink = this.shadowRoot.querySelector('#logo-link');
+    const homeLink = this.shadowRoot.querySelector('#home-link');
+
     // Toggle mobile menu
     hamburger?.addEventListener('click', () => {
       mobileMenu?.classList.toggle('active');
@@ -70,6 +73,16 @@ class RushGameNavbar extends HTMLElement {
       if (!this.contains(e.target)) {
         mobileMenu?.classList.remove('active');
       }
+    });
+
+    // Navigation to index.html
+    logoLink?.addEventListener('click', () => {
+      this.handleHomeNavigation();
+    });
+
+    homeLink?.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.handleHomeNavigation();
     });
 
     // Login buttons
@@ -96,6 +109,11 @@ class RushGameNavbar extends HTMLElement {
     if (!this.navbarData.isLoggedIn) {
       window.location.href = './login-singup.html';
     }
+  }
+
+  handleHomeNavigation() {
+    // Redirect to home
+    window.location.href = './index.html';
   }
 
   handleLogout() {
