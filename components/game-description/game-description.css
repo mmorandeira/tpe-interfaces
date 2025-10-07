@@ -150,6 +150,8 @@
   background: var(--share-bg);
   color: var(--share-text);
   cursor: pointer;
+  position: relative;
+  z-index: 2; /* Asegurar que esté por encima del degradé */
 
   /* tipografía del botón: hereda la de tu página para matchear Figma */
   font:

@@ -65,10 +65,33 @@ class GameDescription extends HTMLElement {
         this.toggleAttribute('expanded');
       }
     });
+
+    // Share button - open modal
+    this.$('.gd__share')?.addEventListener('click', () => {
+      this.#openShareModal();
+    });
   }
 
   attributeChangedCallback() {
     if (this._mounted) this.#render();
+  }
+
+  #openShareModal() {
+    // Create or get existing modal
+    let modal = document.querySelector('share-modal');
+    if (!modal) {
+      modal = document.createElement('share-modal');
+      document.body.appendChild(modal);
+    }
+
+    // Update modal with current page info
+    const linkInput = modal.shadowRoot.querySelector('.share-modal__link-input');
+    if (linkInput) {
+      linkInput.value = window.location.href;
+    }
+
+    // Open modal
+    modal.open();
   }
 
   #render() {
