@@ -17,194 +17,28 @@
     <rushgame-loading id="mainLoader" auto-start duration="5000"></rushgame-loading>
     <rushgame-navbar></rushgame-navbar>
 
-    <rushgame-carrousel title="Recomendados para ti">
+    <rushgame-carrousel title="Recomendados para ti" api-source="true" max-games="8">
       <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/PegSolitare.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game2"
-        title="Space Fighter"
-        image="../../assets/Game-1.jpg"
-        rating="5"
-        category="Action"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game3"
-        title="Puzzle Master"
-        image="../../assets/Game-2.jpg"
-        rating="3"
+        game-id="peg-solitaire"
+        title="Peg Solitaire"
+        image="./assets/PegSolitare.jpg"
+        rating="4.2"
         category="Puzzle"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game4"
-        title="Mystery Island"
-        image="../../assets/Game-3.jpg"
-        rating="4.5"
-        category="Mystery"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game5"
-        title="Racing Thunder"
-        image="../../assets/Game-4.webp"
-        rating="2.5"
-        category="Racing"
-      >
-      </rushgame-card>
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/Game-1.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/Game-2.jpg"
-        rating="1.5"
-        category="Adventure"
       >
       </rushgame-card>
     </rushgame-carrousel>
     <rushgame-category-carousel id="categoryCarousel"></rushgame-category-carousel>
-    <rushgame-carrousel title="Mas jugados">
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/PegSolitare.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game2"
-        title="Space Fighter"
-        image="../../assets/Game-1.jpg"
-        rating="5"
-        category="Action"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game3"
-        title="Puzzle Master"
-        image="../../assets/Game-2.jpg"
-        rating="3"
-        category="Puzzle"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game4"
-        title="Mystery Island"
-        image="../../assets/Game-3.jpg"
-        rating="4.5"
-        category="Mystery"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game5"
-        title="Racing Thunder"
-        image="../../assets/Game-4.webp"
-        rating="2.5"
-        category="Racing"
-      >
-      </rushgame-card>
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/Game-1.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/Game-2.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
+    <rushgame-carrousel title="Mas jugados" api-source="true" max-games="10"> </rushgame-carrousel>
+    <rushgame-carrousel title="Accion" api-source="true" category="Action" max-games="10">
     </rushgame-carrousel>
-    <rushgame-carrousel title="Accion">
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/PegSolitare.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game2"
-        title="Space Fighter"
-        image="../../assets/Game-1.jpg"
-        rating="5"
-        category="Action"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game3"
-        title="Puzzle Master"
-        image="../../assets/Game-2.jpg"
-        rating="3"
-        category="Puzzle"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game4"
-        title="Mystery Island"
-        image="../../assets/Game-3.jpg"
-        rating="4.5"
-        category="Mystery"
-      >
-      </rushgame-card>
-
-      <rushgame-card
-        id="game5"
-        title="Racing Thunder"
-        image="../../assets/Game-4.webp"
-        rating="2.5"
-        category="Racing"
-      >
-      </rushgame-card>
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/Game-1.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
-      <rushgame-card
-        id="game1"
-        title="Adventure Quest"
-        image="../../assets/Game-2.jpg"
-        rating="1.5"
-        category="Adventure"
-      >
-      </rushgame-card>
+    <rushgame-carrousel title="Disparos" api-source="true" category="Shooter" max-games="10">
     </rushgame-carrousel>
-
+    <rushgame-carrousel title="RPG" api-source="true" category="RPG" max-games="10">
+    </rushgame-carrousel>
+    <rushgame-carrousel title="Aventura" api-source="true" category="Adventure" max-games="10">
+    </rushgame-carrousel>
+    <rushgame-carrousel title="Plataforma" api-source="true" category="Platformer" max-games="10">
+    </rushgame-carrousel>
     <rushgame-footer></rushgame-footer>
     <!-- Component imports -->
     <script src="./components/carrousel/carrousel.js"></script>
