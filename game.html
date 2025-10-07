@@ -3,21 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <title>Web Component Navbar</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./game.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Uso directo del componente -->
-    <my-navbar></my-navbar>
+    <rushgame-navbar></rushgame-navbar>
 
-    <div style="padding: 50px; color: white; background: #222">
-      <h1>página del juego</h1>
-      <p>Este es un ejemplo con Web Components.</p>
-    </div>
+    <main id="game-page">
+      <!-- Breadcrumb -->
+      <rush-breadcrumb id="gameBreadcrumb"></rush-breadcrumb>
 
-    <comment-section></comment-section>
+      <!-- Game Title -->
+      <h1 class="game-title">Green Lantern: El Solitario Esmeralda</h1>
+
+      <!-- Game Layout: Image + Instructions -->
+      <div class="game-layout">
+        <div class="game-image-container">
+          <img src="./assets/peg-solitaire.png" alt="Tablero de Peg Solitaire" class="game-image" />
+        </div>
+        <rush-game-instructions></rush-game-instructions>
+      </div>
+
+      <game-description
+        title="Green Lantern: El Solitario Esmeralda"
+        poster="./assets/PegSolitare.jpg"
+        rating="5.0"
+        release-date="2009-01-01"
+        clamp="3"
+      >
+        <div slot="description">
+          En un rincón olvidado del universo, los Guardianes del Oa te encomiendan la misión más
+          insólita jamás vista: ¡resolver el enigma cósmico del Peg Solitaire! Como nuevo recluta
+          del Cuerpo de Linternas Verdes, deberás dominar este ancestral juego de estrategia que ha
+          desafiado a los más grandes héroes de la galaxia. Cada movimiento cuenta, cada salto
+          elimina una pieza, y tu objetivo es dejar solo una ficha en el tablero. ¿Tienes lo que se
+          necesita para convertirte en el próximo protector del sector 2814?
+        </div>
+      </game-description>
+
+      <comment-section></comment-section>
+    </main>
+
+    <!-- Footer -->
+    <rushgame-footer></rushgame-footer>
 
     <script src="./components/navbar/navbar.js" defer></script>
-
-    <script src="./components/comments/services/comment-store.js" defer></script>
+    <script src="./components/breadcrumb/breadcrumb.js" defer></script>
+    <script src="./components/game-instructions/game_instructions.js" defer></script>
+    <script type="module" src="./components/game-description/game-description.js"></script>
+    <script type="module" src="./components/share-modal/share-modal.js"></script>
+    <script src="./components/footer/footer.js"></script>
 
     <script src="./components/comments/reply-row/reply-row.js" defer></script>
     <script src="./components/comments/action-row/action-row.js" defer></script>

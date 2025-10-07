@@ -1,0 +1,75 @@
+<template id="game-description-template">
+  <!-- FRAME raíz (Auto-layout vertical) -->
+  <section class="gd" role="region" aria-label="Game Description">
+    <!-- 1) Description + Share -->
+    <div class="gd__desc-share">
+      <div class="gd__desc">
+        <h3 class="gd__desc-title">Descripción</h3>
+        <div class="gd__desc-text">
+          <slot name="description">Descripción del juego…</slot>
+        </div>
+      </div>
+      <button class="gd__share" type="button">
+        <span class="gd__share-ico" aria-hidden="true"></span>
+        <span class="gd__share-label">Compartir</span>
+      </button>
+    </div>
+
+    <!-- 2) Imagen + Información del juego -->
+    <div class="gd__game-info">
+      <figure class="gd__poster">
+        <img alt="Carátula del juego" />
+      </figure>
+
+      <div class="gd__info">
+        <h3 class="gd__title"></h3>
+        <div class="gd__row" data-stars-row>
+          <span class="gd__label">Rating</span>
+          <div class="gd__stars" data-stars></div>
+          <span class="gd__value"></span>
+        </div>
+        <div class="gd__row">
+          <span class="gd__label">Fecha de lanzamiento</span>
+          <time class="gd__date" datetime=""></time>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3) Frame Gameplays -->
+    <div class="gd__gameplays">
+      <h4 class="gd__section-title">Gameplays</h4>
+      <ul class="gd__gp-list">
+        <li><button class="gd__gp" type="button">Video 1</button></li>
+        <li><button class="gd__gp" type="button">Video 2</button></li>
+        <li><button class="gd__gp" type="button">Video 3</button></li>
+        <li><button class="gd__gp" type="button">Video 4</button></li>
+      </ul>
+    </div>
+
+    <!-- 4) Frame Redes Sociales -->
+    <div class="gd__social">
+      <ul class="gd__social-list">
+        <li>
+          <a class="gd__social-link" href="#"><span>Facebook</span></a>
+        </li>
+        <li>
+          <a class="gd__social-link" href="#"><span>X</span></a>
+        </li>
+        <li>
+          <a class="gd__social-link" href="#"><span>Instagram</span></a>
+        </li>
+        <li>
+          <a class="gd__social-link" href="#"><span>TikTok</span></a>
+        </li>
+        <li>
+          <a class="gd__social-link" href="#"><span>YouTube</span></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 5) Texto Mostrar menos (solo cuando está expandido) -->
+    <div class="gd__footer">
+      <span class="gd__toggle-expanded">Mostrar menos</span>
+    </div>
+  </section>
+</template>

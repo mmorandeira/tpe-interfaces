@@ -1,0 +1,66 @@
+<template id="share-modal-template">
+  <div
+    class="share-modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="share-modal-title"
+  >
+    <div class="share-modal">
+      <h2 id="share-modal-title" class="share-modal__title">Compartir</h2>
+
+      <!-- Social Media Icons -->
+      <div class="share-modal__social">
+        <button
+          class="share-modal__social-btn"
+          data-platform="email"
+          aria-label="Compartir por email"
+        >
+          <span class="share-modal__social-icon" data-icon="email"></span>
+        </button>
+        <button
+          class="share-modal__social-btn"
+          data-platform="facebook"
+          aria-label="Compartir en Facebook"
+        >
+          <span class="share-modal__social-icon" data-icon="facebook"></span>
+        </button>
+        <button
+          class="share-modal__social-btn"
+          data-platform="instagram"
+          aria-label="Compartir en Instagram"
+        >
+          <span class="share-modal__social-icon" data-icon="instagram"></span>
+        </button>
+        <button
+          class="share-modal__social-btn"
+          data-platform="twitter"
+          aria-label="Compartir en X (Twitter)"
+        >
+          <span class="share-modal__social-icon" data-icon="twitter"></span>
+        </button>
+        <button
+          class="share-modal__social-btn"
+          data-platform="whatsapp"
+          aria-label="Compartir en WhatsApp"
+        >
+          <span class="share-modal__social-icon" data-icon="whatsapp"></span>
+        </button>
+      </div>
+
+      <!-- Shareable Link -->
+      <div class="share-modal__link">
+        <input
+          type="text"
+          class="share-modal__link-input"
+          value="http://0.0.0.0:5500/game.html"
+          readonly
+          aria-label="Enlace para compartir"
+        />
+        <button class="share-modal__copy-btn" type="button">Copiar</button>
+      </div>
+
+      <!-- Close Button -->
+      <button class="share-modal__close-btn" type="button" aria-label="Cerrar modal">Cerrar</button>
+    </div>
+  </div>
+</template>
