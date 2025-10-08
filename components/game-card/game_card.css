@@ -233,28 +233,46 @@
 }
 
 .play-btn {
+  position: relative;
   width: 100px;
   height: 32px;
-  background: #b7f34d;
-  color: #222;
-  border: none;
+  background-color: transparent;
+  color: var(--rushgames-primary);
+  border: 2px solid var(--rushgames-primary);
   border-radius: 12px;
   font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 500ms ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 12px rgba(183, 243, 77, 0.15);
   text-transform: none;
   letter-spacing: 0.5px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.play-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  background-color: var(--rushgames-primary);
+  transition: all 500ms ease;
+  z-index: -1;
+  width: 0;
+  height: 100%;
 }
 
 .play-btn:hover {
-  background: #d6ff8a;
-  transform: scale(1.04);
-  box-shadow: 0 6px 20px rgba(183, 243, 77, 0.3);
+  color: var(--neutral-black);
+}
+
+.play-btn:hover::before {
+  width: 100%;
 }
 
 .play-btn:active {
@@ -262,7 +280,7 @@
 }
 
 .play-btn:focus {
-  outline: 2px solid #b7f34d;
+  outline: 2px solid var(--rushgames-primary);
   outline-offset: 2px;
 }
 
