@@ -5,7 +5,7 @@ class RushBreadcrumb extends HTMLElement {
 
     // Breadcrumb data
     this.breadcrumbData = {
-      items: [{ label: 'Home', url: '/' }],
+      items: [{ label: 'Home', url: './index.html' }],
     };
 
     this.init();
@@ -115,8 +115,8 @@ class RushBreadcrumb extends HTMLElement {
 // Opción 1: Usando atributo
 const breadcrumb = document.getElementById('gameBreadcrumb');
 const items = [
-  { label: 'Home', url: '/index.html' },
-  { label: 'Acción', url: '/categoria-accion.html' },
+  { label: 'Home', url: './index.html' },
+  { label: 'Acción', url: './categoria-accion.html' },
   { label: 'Green Lantern', url: '#' },
 ];
 breadcrumb.setAttribute('items', JSON.stringify(items));
@@ -124,8 +124,8 @@ breadcrumb.setAttribute('items', JSON.stringify(items));
 // Opción 2: Usando método setItems (después de que el componente esté cargado)
 setTimeout(() => {
   breadcrumb.setItems([
-    { label: 'Home', url: '/index.html' },
-    { label: 'Acción', url: '/categoria-accion.html' },
+    { label: 'Home', url: './index.html' },
+    { label: 'Acción', url: './categoria-accion.html' },
     { label: 'Green Lantern', url: '#' },
   ]);
 }, 100);
