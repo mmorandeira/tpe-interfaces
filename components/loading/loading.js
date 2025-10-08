@@ -50,10 +50,29 @@ class RushGameLoadingScreen extends HTMLElement {
   }
 
   setupElements() {
+    if (!this.shadowRoot) {
+      console.error('Shadow root not available');
+      return;
+    }
+
     this.progressFill = this.shadowRoot.querySelector('#progressFill');
     this.progressText = this.shadowRoot.querySelector('#progressText');
     this.loadingPercentage = this.shadowRoot.querySelector('#loadingPercentage');
     this.loadingOverlay = this.shadowRoot.querySelector('.loading-overlay');
+
+    // Verify all elements were found
+    if (!this.loadingOverlay) {
+      console.error('Loading overlay element not found in shadow DOM');
+    }
+    if (!this.progressFill) {
+      console.error('Progress fill element not found in shadow DOM');
+    }
+    if (!this.progressText) {
+      console.error('Progress text element not found in shadow DOM');
+    }
+    if (!this.loadingPercentage) {
+      console.error('Loading percentage element not found in shadow DOM');
+    }
 
     // Set initial state
     this.updateProgress(0);
@@ -63,6 +82,17 @@ class RushGameLoadingScreen extends HTMLElement {
     /* Start the loading process over the specified duration (in ms) */
 
     if (this.isLoading) return;
+
+    // Ensure elements are set up
+    if (!this.loadingOverlay) {
+      this.setupElements();
+    }
+
+    // Double check that elements exist
+    if (!this.loadingOverlay) {
+      console.error('Loading overlay element not found');
+      return;
+    }
 
     this.isLoading = true;
     this.progress = 0;
@@ -133,6 +163,11 @@ class RushGameLoadingScreen extends HTMLElement {
   fadeOut() {
     /* Fade out the loading overlay */
 
+    if (!this.loadingOverlay) {
+      console.error('Loading overlay element not found for fadeOut');
+      return;
+    }
+
     this.loadingOverlay.classList.add('fade-out');
 
     // Emit loading completed event
@@ -152,10 +187,14 @@ class RushGameLoadingScreen extends HTMLElement {
 
     if (this.progressFill) {
       this.progressFill.style.width = `${clampedPercentage}%`;
+    } else {
+      console.warn('Progress fill element not available');
     }
 
     if (this.loadingPercentage) {
       this.loadingPercentage.textContent = `${Math.round(clampedPercentage)}%`;
+    } else {
+      console.warn('Loading percentage element not available');
     }
   }
 
