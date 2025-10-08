@@ -171,27 +171,56 @@
 }
 
 .configuration-btn {
-  background: var(--rushgames-primary);
-  color: var(--neutral-black);
-  border: none;
+  position: relative;
+  display: inline-block;
   padding: 14px 24px;
   border-radius: 25px;
-  cursor: pointer;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--text-primary);
   font-size: 15px;
   font-weight: bold;
-  transition: all 0.3s ease;
-  display: inline-block;
+  overflow: hidden;
+  transition: all 500ms ease;
+  border: 2px solid var(--rushgames-primary);
+  margin-top: 90px;
+  cursor: pointer;
   text-align: center;
   width: auto;
   min-width: 180px;
-  margin-top: 90px;
-  box-shadow: 0 3px 12px rgba(var(--rushgames-primary-rgb), 0.3);
+  z-index: 1;
+}
+
+.configuration-btn::before {
+  content: '';
+  position: absolute;
+  background-color: var(--rushgames-primary);
+  z-index: -1;
+  left: -350px;
+  right: 0;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  height: 150%;
+  transition: all 750ms ease;
+  transform: rotate(45deg);
+  box-shadow: none;
+  opacity: 0;
 }
 
 .configuration-btn:hover {
-  background: var(--rushgames-primary-l1);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(var(--rushgames-primary-rgb), 0.4);
+  color: var(--text-primary);
+  position: relative;
+  z-index: 2;
+}
+
+.configuration-btn:hover::before {
+  left: 350px;
+  opacity: 1;
+  box-shadow:
+    0 0 5px var(--rushgames-primary),
+    0 0 10px var(--rushgames-primary),
+    0 0 10px var(--rushgames-primary);
 }
 
 .config-subtitle {
