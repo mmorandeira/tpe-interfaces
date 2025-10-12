@@ -7,6 +7,32 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  max-width: 750px;
+}
+
+/* Difficulty Selector */
+.difficulty-select {
+  background: var(--neutral-surface);
+  border: 1px solid var(--neutral-border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 160px;
+}
+
+.difficulty-select:hover {
+  border-color: var(--rushgames-primary);
+}
+
+.difficulty-select:focus {
+  outline: none;
+  border-color: var(--rushgames-primary);
+  box-shadow: 0 0 0 2px rgba(183, 243, 77, 0.2);
 }
 
 /* Game Controls Bar */
@@ -19,7 +45,7 @@
   border: 1px solid var(--neutral-border);
   border-radius: 8px;
   width: 100%;
-  max-width: 600px;
+  max-width: 750px;
 }
 
 .btn-primary {
@@ -121,7 +147,7 @@
   border: 2px solid var(--rushgames-primary);
   border-radius: 12px;
   width: 100%;
-  max-width: 600px;
+  max-width: 750px;
   animation: fadeIn 0.5s ease;
 }
 
@@ -169,9 +195,16 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .difficulty-select {
+    font-size: 11px;
+    padding: 6px 8px;
+    min-width: 140px;
+  }
+
   .blocka-controls {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
   }
 
   #blockaCanvas {
