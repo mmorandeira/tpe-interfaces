@@ -39,13 +39,18 @@
               <span class="level-label">Nivel:</span>
               <span id="levelValue">1</span>
             </div>
+            <select id="difficultySelect" class="difficulty-select">
+              <option value="4">4 Divisiones - 2x2 (Fácil)</option>
+              <option value="6" selected>6 Divisiones - 3x2 (Medio)</option>
+              <option value="8">8 Divisiones - 3x3 (Difícil)</option>
+            </select>
           </div>
 
           <!-- Canvas del juego -->
-          <canvas id="blockaCanvas" width="600" height="600"></canvas>
+          <canvas id="blockaCanvas" width="700" height="700"></canvas>
 
           <!-- Victory Controls (hidden by default) -->
-          <div id="victoryControls" class="victory-controls" style="display: none;">
+          <div id="victoryControls" class="victory-controls" style="display: none">
             <h2>¡Nivel Completado!</h2>
             <p>Tiempo: <span id="finalTime">00:00</span></p>
             <div class="victory-buttons">
@@ -66,12 +71,12 @@
         clamp="3"
       >
         <div slot="description">
-          Los Guardianes de Oa han creado un nuevo entrenamiento para los Linternas Verdes:
-          Blocka, un desafío mental que pone a prueba tu percepción espacial y velocidad.
-          Las imágenes del universo DC han sido fragmentadas y distorsionadas. Tu misión
-          es rotarlas correctamente antes de que el tiempo se agote. Cada nivel aumenta
-          la dificultad con nuevos filtros visuales. ¿Podrás demostrar que tienes la
-          concentración necesaria para portar el anillo de poder?
+          Los Guardianes de Oa han creado un nuevo entrenamiento para los Linternas Verdes: Blocka,
+          un desafío mental que pone a prueba tu percepción espacial y velocidad. Las imágenes del
+          universo DC han sido fragmentadas y distorsionadas. Tu misión es rotarlas correctamente
+          antes de que el tiempo se agote. Cada nivel aumenta la dificultad con nuevos filtros
+          visuales. ¿Podrás demostrar que tienes la concentración necesaria para portar el anillo de
+          poder?
         </div>
       </game-description>
 
